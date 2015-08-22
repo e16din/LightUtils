@@ -26,8 +26,6 @@ public class DateTimeUtils extends SocialUtils {
             .toFormatter()
             .withZone(UTC_TIME_ZONE);
 
-    private DateTimeUtils(){}
-
     public static String nowUtcIso() {
         return formatISO(DateTime.now(UTC_TIME_ZONE));
     }
