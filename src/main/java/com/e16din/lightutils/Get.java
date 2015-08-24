@@ -32,11 +32,15 @@ public class Get {
 
     public static String string(Object obj) {
 
-        if(obj instanceof List)
-            return "size of list: "+((List) obj).size();
-        if(obj instanceof Object[])
-            return "size of array: "+((Object[]) obj).length;
+        if (obj instanceof List)
+            return "size of list: " + ((List) obj).size();
+        if (obj instanceof Object[])
+            return "size of array: " + ((Object[]) obj).length;
 
         return obj.toString();
+    }
+
+    public static String string(TextView tv) {
+        return tv.getText().toString();
     }
 }
