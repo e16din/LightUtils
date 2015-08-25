@@ -100,11 +100,11 @@ public class IntentMaster {
         activity.startActivityForResult(intent, requestCode);
     }
 
-    public static final void startActivityForResult(Activity activity, Class cls, Data... data) {
+    public static final void startActivityForResult0(Activity activity, Class cls, Data... data) {
         startActivityForResult(activity, cls, 0, data);
     }
 
-    public static final void startActivityForResult(Activity activity, Class cls,
+    public static final void startActivityForResult0(Activity activity, Class cls,
                                                     Serializable... data) {
         startActivityForResult(activity, cls, 0, data);
     }
