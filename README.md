@@ -19,6 +19,12 @@ dependencies {
 }
 ```
 
+## Versions:
+
+...
+1.0.2
+added MapUtils and Ion request manager
+
 
 # MIT LICENSE
 Copyright (c) 2015 Aleksandr Kundryukov
