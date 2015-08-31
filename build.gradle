@@ -31,6 +31,12 @@ android {
     }
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}
+
 dependencies {
     compile 'net.danlew:android.joda:2.8.2'
+    compile 'com.android.support:appcompat-v7:23.0.0'
+    compile 'com.koushikdutta.ion:ion:2.1.6'
 }

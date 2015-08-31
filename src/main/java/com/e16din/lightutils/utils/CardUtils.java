@@ -5,7 +5,8 @@ import java.util.regex.Pattern;
 /**
  * Created by e16din on 14.08.15.
  */
-public class CardUtils {
+public class CardUtils extends MapUtils {
+
     //LUHN Formula (mod10)
     public static boolean validateCardNumber(String n) {
         try {
