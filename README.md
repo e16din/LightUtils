@@ -20,9 +20,8 @@ dependencies {
 ```
 
 ## Versions:
+1.0.2:
 
-...
-1.0.2
 added MapUtils and Ion request manager
 
 
