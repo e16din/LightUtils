@@ -15,14 +15,15 @@ buildscript {
 }
 
 dependencies {
-    compile 'com.github.e16din:LightUtils:1.0.0'
+    compile 'com.github.e16din:LightUtils:1.0.2'
 }
 ```
 
 ## Versions:
 1.0.2:
-
-added MapUtils and Ion request manager
+added MapUtils
+added InvisibleUtils
+added Ion request manager
 
 
 # MIT LICENSE
