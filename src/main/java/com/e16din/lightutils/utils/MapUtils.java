@@ -12,31 +12,43 @@ import com.koushikdutta.ion.Ion;
  * Created by e16din on 31.08.15.
  */
 public class MapUtils extends InvisibleUtils {
-
     public static final int DEFAULT_Z = 15;
     public static final int DEFAULT_WIDTH = 600;
     public static final int DEFAULT_HEIGHT = 450;
     public static final String TAG = "MapUtils";
+    public static final String URL_MAPS_YANDEX_GEOCODE = "https://geocode-maps.yandex.ru/1.x/?format=json&geocode=";
 
     public interface OnCompleteListener {
         void onComplete(String url);
     }
 
-    public static void searchYandexStaticMapUrlByAddress(Context context, String address,
-                                                         final OnCompleteListener listener) {
+    public interface OnLocationFound {
+        void onComplete(String latitude, String longitude);
+    }
+
+    public static void getLocationByAddress(Context context, String address, final OnLocationFound listener) {
         Log.d(TAG, "url: " + ("https://geocode-maps.yandex.ru/1.x/?format=json&geocode=" + address));
         Ion.with(context)
-                .load("https://geocode-maps.yandex.ru/1.x/?format=json&geocode=" + address)
+                .load(URL_MAPS_YANDEX_GEOCODE + address)
                 .as(Result.class)
                 .setCallback(new FutureCallback<Result>() {
                     @Override
                     public void onCompleted(Exception e, Result result) {
                         final String[] pos = result.getResponse().getGeoObjectCollection()
                                 .getFeatureMember().get(0).getGeoObject().getPoint().getPos();
-
-                        listener.onComplete(getYandexStaticMapUrl(pos[0], pos[1]));
+                        listener.onComplete(pos[0], pos[1]);
                     }
                 });
+    }
+
+    public static void searchYandexStaticMapUrlByAddress(Context context, String address,
+                                                         final OnCompleteListener listener) {
+        getLocationByAddress(context, address, new OnLocationFound() {
+            @Override
+            public void onComplete(String latitude, String longitude) {
+                listener.onComplete(getYandexStaticMapUrl(latitude, longitude));
+            }
+        });
     }
 
     public static String getYandexStaticMapUrl(float lat, float lon) {
