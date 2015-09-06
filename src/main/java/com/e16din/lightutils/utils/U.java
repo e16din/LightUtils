@@ -7,6 +7,9 @@ import android.net.ConnectivityManager;
 
 public class U extends SdkUtils {
 
+    private U() {
+    }
+
     public static boolean isGpsEnabled(Context context) {
         final LocationManager manager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         return manager.isProviderEnabled(LocationManager.GPS_PROVIDER);

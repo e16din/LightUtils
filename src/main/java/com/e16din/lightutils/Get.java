@@ -9,6 +9,9 @@ import java.util.List;
  */
 public class Get {
 
+    private Get() {
+    }
+
     public static int size(Object obj) {
         return size(obj + "");
     }
@@ -27,6 +30,15 @@ public class Get {
 
     public static int size(Object[] array) {
         return array.length;
+    }
+
+
+    public static int length(CharSequence str) {
+        return str.length();
+    }
+
+    public static int length(TextView tv) {
+        return tv.length();
     }
 
 

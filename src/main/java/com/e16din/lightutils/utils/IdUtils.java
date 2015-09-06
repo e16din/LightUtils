@@ -67,4 +67,8 @@ public class IdUtils extends DateTimeUtils {
 
         return deviceUuid.toString();
     }
+
+    public static String randomUUID() {
+        return UUID.randomUUID().toString();
+    }
 }

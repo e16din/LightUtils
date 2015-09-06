@@ -11,7 +11,7 @@ import com.koushikdutta.ion.Ion;
 /**
  * Created by e16din on 31.08.15.
  */
-public class MapUtils extends InvisibleUtils {
+public class MapUtils extends ViewUtils {
 
     public static final int DEFAULT_Z = 15;
     public static final int DEFAULT_WIDTH = 600;
