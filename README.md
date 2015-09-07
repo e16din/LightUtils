@@ -20,6 +20,7 @@ dependencies {
 ```
 
 ## Versions:
+
 1.0.4:
 added ViewUtils
 added OtherUtils
