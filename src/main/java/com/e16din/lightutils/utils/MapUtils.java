@@ -37,7 +37,8 @@ public class MapUtils extends InvisibleUtils {
                     public void onCompleted(Exception e, Result result) {
                         final String[] pos = result.getResponse().getGeoObjectCollection()
                                 .getFeatureMember().get(0).getGeoObject().getPoint().getPos();
-                        listener.onComplete(pos[0], pos[1]);
+                        //because yandex return long and lat, see https://tech.yandex.ru/maps/doc/geocoder/desc/concepts/About-docpage/
+                        listener.onComplete(pos[1], pos[0]);
                     }
                 });
     }
@@ -78,8 +79,8 @@ public class MapUtils extends InvisibleUtils {
     }
 
     public static String getYandexStaticMapUrl(String lat, String lon, int width, int height, int z) {
-        final String result = "https://static-maps.yandex.ru/1.x/?l=map&lang=ru-RU&ll=" + lat + "%2C" + lon +
-                "&origin=jsapi-constructor&pt=" + lat + "%2C" + lon +
+        final String result = "https://static-maps.yandex.ru/1.x/?l=map&lang=ru-RU&ll=" + lon + "%2C" + lat +
+                "&origin=jsapi-constructor&pt=" + lon + "%2C" + lat +
                 "%2Cpm2lbl&size=" + Integer.toString(width) + "%2C" + Integer.toString(height) +
                 "&z=" + z;
         Log.d(TAG, "url: " + result);
