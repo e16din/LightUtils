@@ -3,7 +3,6 @@ package com.e16din.lightutils.utils;
 import android.content.Context;
 import android.util.Log;
 
-import com.e16din.lightutils.utils.other.InvisibleUtils;
 import com.e16din.lightutils.utils.yandex.model.Result;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
@@ -12,7 +11,7 @@ import com.koushikdutta.ion.Ion;
 /**
  * Created by e16din on 31.08.15.
  */
-public class MapUtils extends InvisibleUtils {
+public class MapUtils extends ViewUtils {
     public static final int DEFAULT_Z = 15;
     public static final int DEFAULT_WIDTH = 600;
     public static final int DEFAULT_HEIGHT = 450;
@@ -84,5 +83,24 @@ public class MapUtils extends InvisibleUtils {
                 "&z=" + z;
         Log.d(TAG, "url: " + result);
         return result;
+    }
+
+    public static float calculateDistance(double lat1, double lng1, double lat2, double lng2, boolean miles) {
+        lat1 *= Math.PI / 180;
+        lng1 *= Math.PI / 180;
+        lat2 *= Math.PI / 180;
+        lng2 *= Math.PI / 180;
+
+        final float r = 6372.797f; // radius of Earth in km
+
+        double dlat = lat2 - lat1;
+        double dlng = lng2 - lng1;
+
+        double a = Math.sin(dlat / 2) * Math.sin(dlat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlng / 2) * Math.sin(dlng / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        double km = r * c;
+
+        return (float) (miles ? (km * 0.621371192) : km);
     }
 }

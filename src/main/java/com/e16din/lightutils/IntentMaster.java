@@ -45,6 +45,22 @@ public class IntentMaster {
         return intent.getExtras() != null && intent.getExtras().containsKey(key);
     }
 
+    public static int getExtrasCount(Intent intent) {
+        return intent.getExtras() == null ? 0 : intent.getExtras().size();
+    }
+
+    public static int getExtrasCount(Activity activity) {
+        return getExtrasCount(activity.getIntent());
+    }
+
+    public static boolean hasExtra(Intent intent) {
+        return getExtrasCount(intent) > 0;
+    }
+
+    public static boolean hasExtra(Activity activity) {
+        return hasExtra(activity.getIntent());
+    }
+
     public static Intent createActivityIntent(Context context, Class cls,
                                               Serializable... data) {
         Intent intent = new Intent(context, cls);
@@ -80,6 +96,11 @@ public class IntentMaster {
         Intent intent = new Intent(context, cls);
         putExtra(intent, data);
         return intent;
+    }
+
+    public static void startActivity(Context context, Class cls) {
+        Intent intent = createActivityIntent(context, cls);
+        context.startActivity(intent);
     }
 
     public static void startActivity(Context context, Class cls, Data... data) {
@@ -137,6 +158,30 @@ public class IntentMaster {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("sms:" + phone));
         intent.putExtra("sms_body", message);
+        activity.startActivity(intent);
+    }
+
+    public static void openMap(Activity activity, double lat, double lng, String title) {
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("geo:0,0?q=" + lat + "," + lng + " (" + title + ")"));
+        activity.startActivity(intent);
+    }
+
+    public static void openMap(Activity activity, String lat, String lng, String title) {
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("geo:0,0?q=" + lat + "," + lng + " (" + title + ")"));
+        activity.startActivity(intent);
+    }
+
+    public static void openMap(Activity activity, double lat, double lng) {
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("geo:0,0?q=" + lat + "," + lng));
+        activity.startActivity(intent);
+    }
+
+    public static void openMap(Activity activity, String lat, String lng) {
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("geo:0,0?q=" + lat + "," + lng));
         activity.startActivity(intent);
     }
 }

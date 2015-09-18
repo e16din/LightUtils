@@ -51,4 +51,8 @@ public class IsIt {
             return false;
         }
     }
+
+    public static boolean nulll(Object obj) {
+        return obj == null;
+    }
 }
