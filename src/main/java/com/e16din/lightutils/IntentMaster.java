@@ -174,6 +174,19 @@ public class IntentMaster {
         activity.startActivity(intent);
     }
 
+    public static void openGoogleMap(Activity activity, String text) {
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("geo:0,0?q=" + text));
+        intent.setPackage("com.google.android.apps.maps");
+        activity.startActivity(intent);
+    }
+
+    public static void openNavigationMap(Activity activity, String address) {
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("google.navigation:q=" + address));
+        activity.startActivity(intent);
+    }
+
     public static void openMap(Activity activity, String lat, String lng, String title) {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse("geo:0,0?q=" + lat + "," + lng + " (" + title + ")"));
