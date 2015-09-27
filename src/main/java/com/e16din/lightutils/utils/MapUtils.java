@@ -3,9 +3,12 @@ package com.e16din.lightutils.utils;
 import android.content.Context;
 import android.util.Log;
 
+import com.e16din.lightutils.utils.yandex.model.GeoObjectWrapper;
 import com.e16din.lightutils.utils.yandex.model.Result;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+
+import java.util.ArrayList;
 
 
 /**
@@ -26,7 +29,20 @@ public class MapUtils extends ViewUtils {
         void onComplete(String latitude, String longitude);
     }
 
-    public static void getLocationByAddress(Context context, String address, final OnLocationFoundListener listener) {
+    public interface OnLocationsFoundListener {
+        void onComplete(ArrayList<String[]> points);
+    }
+
+    public static void findLocationByAddress(Context context, String address, final OnLocationFoundListener listener) {
+        findLocationsByAddress(context, address, new OnLocationsFoundListener() {
+            @Override
+            public void onComplete(ArrayList<String[]> points) {
+                listener.onComplete(points.get(0)[0], points.get(0)[1]);
+            }
+        });
+    }
+
+    public static void findLocationsByAddress(Context context, String address, final OnLocationsFoundListener listener) {
         Log.d(TAG, "url: " + ("https://geocode-maps.yandex.ru/1.x/?format=json&geocode=" + address));
         Ion.with(context)
                 .load(URL_MAPS_YANDEX_GEOCODE + address)
@@ -34,17 +50,28 @@ public class MapUtils extends ViewUtils {
                 .setCallback(new FutureCallback<Result>() {
                     @Override
                     public void onCompleted(Exception e, Result result) {
-                        final String[] pos = result.getResponse().getGeoObjectCollection()
-                                .getFeatureMember().get(0).getGeoObject().getPoint().getPos();
-                        //because yandex return long and lat, see https://tech.yandex.ru/maps/doc/geocoder/desc/concepts/About-docpage/
-                        listener.onComplete(pos[1], pos[0]);
+                        ArrayList<GeoObjectWrapper> collection = result.getResponse()
+                                .getGeoObjectCollection()
+                                .getFeatureMember();
+
+                        ArrayList<String[]> resultPoints = new ArrayList<>();
+
+                        for (int i = 0; i < collection.size(); i++) {
+                            final String[] pos = result.getResponse().getGeoObjectCollection()
+                                    .getFeatureMember().get(0).getGeoObject().getPoint().getPos();
+                            //because yandex return long and lat, see https://tech.yandex.ru/maps/doc/geocoder/desc/concepts/About-docpage/
+                            String[] point = new String[]{pos[1], pos[0]};
+                            resultPoints.add(point);
+                        }
+
+                        listener.onComplete(resultPoints);
                     }
                 });
     }
 
     public static void searchYandexStaticMapUrlByAddress(Context context, String address,
                                                          final OnYandexMapUrlFoundListener listener) {
-        getLocationByAddress(context, address, new OnLocationFoundListener() {
+        findLocationByAddress(context, address, new OnLocationFoundListener() {
             @Override
             public void onComplete(String latitude, String longitude) {
                 listener.onComplete(getYandexStaticMapUrl(latitude, longitude));

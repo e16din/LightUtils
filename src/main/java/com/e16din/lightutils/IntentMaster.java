@@ -61,8 +61,8 @@ public class IntentMaster {
         return hasExtra(activity.getIntent());
     }
 
-    public static Intent createActivityIntent(Context context, Class cls,
-                                              Serializable... data) {
+    public static Intent createIntent(Context context, Class cls,
+                                      Serializable... data) {
         Intent intent = new Intent(context, cls);
         putExtra(intent, data);
         return intent;
@@ -92,36 +92,36 @@ public class IntentMaster {
         activity.finish();
     }
 
-    public static Intent createActivityIntent(Context context, Class cls, Data... data) {
+    public static Intent createIntent(Context context, Class cls, Data... data) {
         Intent intent = new Intent(context, cls);
         putExtra(intent, data);
         return intent;
     }
 
     public static void startActivity(Context context, Class cls) {
-        Intent intent = createActivityIntent(context, cls);
+        Intent intent = createIntent(context, cls);
         context.startActivity(intent);
     }
 
     public static void startActivity(Context context, Class cls, Data... data) {
-        Intent intent = createActivityIntent(context, cls, data);
+        Intent intent = createIntent(context, cls, data);
         context.startActivity(intent);
     }
 
     public static void startActivity(Context context, Class cls, Serializable... data) {
-        Intent intent = createActivityIntent(context, cls, data);
+        Intent intent = createIntent(context, cls, data);
         context.startActivity(intent);
     }
 
     public static void startActivityForResult(Activity activity, Class cls, int requestCode,
                                               Data... data) {
-        Intent intent = createActivityIntent(activity, cls, data);
+        Intent intent = createIntent(activity, cls, data);
         activity.startActivityForResult(intent, requestCode);
     }
 
     public static void startActivityForResult(Activity activity, Class cls, int requestCode,
                                               Serializable... data) {
-        Intent intent = createActivityIntent(activity, cls, data);
+        Intent intent = createIntent(activity, cls, data);
         activity.startActivityForResult(intent, requestCode);
     }
 
@@ -144,6 +144,13 @@ public class IntentMaster {
         for (int i = 0; i < data.length; i++) {
             intent.putExtra(KEY_DATA + "_" + i, data[i]);
         }
+    }
+
+    ///Services
+
+    public static void startService(Context context, Class cls) {
+        Intent intent = createIntent(context, cls);
+        context.startService(intent);
     }
 
     //use this permission
