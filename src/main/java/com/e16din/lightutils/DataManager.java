@@ -67,6 +67,12 @@ public final class DataManager {
         editor.apply();
     }
 
+    public void save(final String key, final float data) {
+        final SharedPreferences.Editor editor = getDefaultSharedPreferences().edit();
+        editor.putFloat(key, data);
+        editor.apply();
+    }
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void save(final String key, final Set<String> data) {
         final SharedPreferences.Editor editor = getDefaultSharedPreferences().edit();
