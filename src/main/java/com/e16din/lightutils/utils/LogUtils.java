@@ -5,7 +5,7 @@ import android.util.Log;
 /**
  * Created by e16din on 02.09.15.
  */
-public class LogUtils {
+public class LogUtils extends SecureUtils {
 
     private static String tag = "LogUtils";
 

@@ -32,7 +32,7 @@ public final class DataManager {
     public static DataManager getInstance() {
         return Holder.HOLDER_INSTANCE;
     }
-    
+
     public SharedPreferences getDefaultSharedPreferences() {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
