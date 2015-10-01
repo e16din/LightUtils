@@ -1,12 +1,15 @@
 package com.e16din.lightutils;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
+import java.util.Set;
 
 public final class DataManager {
 
@@ -29,10 +32,7 @@ public final class DataManager {
     public static DataManager getInstance() {
         return Holder.HOLDER_INSTANCE;
     }
-
-    /**
-     * Shared preferences
-     */
+    
     public SharedPreferences getDefaultSharedPreferences() {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
@@ -79,6 +79,15 @@ public final class DataManager {
 
     public int loadInt(final String key) {
         return getDefaultSharedPreferences().getInt(key, -1);
+    }
+
+    public long loadLong(final String key) {
+        return getDefaultSharedPreferences().getLong(key, -1);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public Set<String> loadStringSet(final String key) {
+        return getDefaultSharedPreferences().getStringSet(key, null);
     }
 
     public float loadFloat(final String key) {
