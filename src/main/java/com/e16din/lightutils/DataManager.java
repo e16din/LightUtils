@@ -40,44 +40,44 @@ public final class DataManager {
     public <T> void save(final String key, final T data) {
         final SharedPreferences.Editor editor = getDefaultSharedPreferences().edit();
         editor.putString(key, gson.toJson(data));
-        editor.apply();
+        editor.commit();
     }
 
     public void save(final String key, final boolean data) {
         final SharedPreferences.Editor editor = getDefaultSharedPreferences().edit();
         editor.putBoolean(key, data);
-        editor.apply();
+        editor.commit();
     }
 
     public void save(final String key, final String data) {
         final SharedPreferences.Editor editor = getDefaultSharedPreferences().edit();
         editor.putString(key, data);
-        editor.apply();
+        editor.commit();
     }
 
     public void save(final String key, final int data) {
         final SharedPreferences.Editor editor = getDefaultSharedPreferences().edit();
-        editor.putInt(key, data);
-        editor.apply();
+        editor.putInt(key, (int) data);
+        editor.commit();
     }
 
     public void save(final String key, final long data) {
         final SharedPreferences.Editor editor = getDefaultSharedPreferences().edit();
-        editor.putLong(key, data);
-        editor.apply();
+        editor.putLong(key, (long) data);
+        editor.commit();
     }
 
     public void save(final String key, final float data) {
         final SharedPreferences.Editor editor = getDefaultSharedPreferences().edit();
-        editor.putFloat(key, data);
-        editor.apply();
+        editor.putFloat(key, (float) data);
+        editor.commit();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void save(final String key, final Set<String> data) {
         final SharedPreferences.Editor editor = getDefaultSharedPreferences().edit();
         editor.putStringSet(key, data);
-        editor.apply();
+        editor.commit();
     }
 
     public <T> T load(final String key, final Type type) {
@@ -101,7 +101,7 @@ public final class DataManager {
     }
 
     public long loadLong(final String key) {
-        return getDefaultSharedPreferences().getLong(key, -1);
+        return getDefaultSharedPreferences().getLong(key, -1l);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -116,6 +116,6 @@ public final class DataManager {
     public void clear() {
         final SharedPreferences.Editor editor = getDefaultSharedPreferences().edit();
         editor.clear();
-        editor.apply();
+        editor.commit();
     }
 }
