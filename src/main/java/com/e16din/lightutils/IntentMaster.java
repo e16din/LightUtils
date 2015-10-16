@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Parcelable;
 
 import java.io.Serializable;
 
@@ -41,6 +42,32 @@ public class IntentMaster {
         return getExtra(activity.getIntent(), KEY_DATA + "_" + position);
     }
 
+
+    public static Parcelable getExtraP(Intent intent, String key) {
+        return intent.getExtras().getParcelable(key);
+    }
+
+    public static Parcelable getExtraP(Intent intent) {
+        return getExtraP(intent, 0);
+    }
+
+    public static Parcelable getExtraP(Intent intent, int position) {
+        return getExtraP(intent, KEY_DATA + "_" + position);
+    }
+
+    public static Parcelable getExtraP(Activity activity) {
+        return getExtraP(activity, 0);
+    }
+
+    public static Parcelable getExtraP(Activity activity, String key) {
+        return getExtraP(activity.getIntent(), key);
+    }
+
+    public static Parcelable getExtraP(Activity activity, int position) {
+        return getExtraP(activity.getIntent(), KEY_DATA + "_" + position);
+    }
+
+
     public static boolean containsKey(Intent intent, String key) {
         return intent.getExtras() != null && intent.getExtras().containsKey(key);
     }
@@ -61,14 +88,26 @@ public class IntentMaster {
         return hasExtra(activity.getIntent());
     }
 
-    public static Intent createIntent(Context context, Class cls,
-                                      Serializable... data) {
+    public static Intent createIntent(Context context, Class cls, Serializable... data) {
+        Intent intent = new Intent(context, cls);
+        putExtra(intent, data);
+        return intent;
+    }
+
+    public static Intent createIntent(Context context, Class cls, Parcelable... data) {
         Intent intent = new Intent(context, cls);
         putExtra(intent, data);
         return intent;
     }
 
     public static Intent createResultIntent(Activity activity, Serializable... data) {
+        Intent intent = new Intent();
+        activity.setResult(Activity.RESULT_OK, intent);
+        putExtra(intent, data);
+        return intent;
+    }
+
+    public static Intent createResultIntent(Activity activity, Parcelable... data) {
         Intent intent = new Intent();
         activity.setResult(Activity.RESULT_OK, intent);
         putExtra(intent, data);
@@ -87,6 +126,11 @@ public class IntentMaster {
         activity.finish();
     }
 
+    public static void finishWithResult(Activity activity, Parcelable... data) {
+        createResultIntent(activity, data);
+        activity.finish();
+    }
+
     public static void finishWithResult(Activity activity, Data... data) {
         createResultIntent(activity, data);
         activity.finish();
@@ -96,6 +140,10 @@ public class IntentMaster {
         Intent intent = new Intent(context, cls);
         putExtra(intent, data);
         return intent;
+    }
+
+    public static Intent createIntent(Context context, Class cls) {
+        return new Intent(context, cls);
     }
 
     public static void startActivity(Context context, Class cls) {
@@ -113,6 +161,11 @@ public class IntentMaster {
         context.startActivity(intent);
     }
 
+    public static void startActivity(Context context, Class cls, Parcelable... data) {
+        Intent intent = createIntent(context, cls, data);
+        context.startActivity(intent);
+    }
+
     public static void startActivityForResult(Activity activity, Class cls, int requestCode,
                                               Data... data) {
         Intent intent = createIntent(activity, cls, data);
@@ -121,6 +174,12 @@ public class IntentMaster {
 
     public static void startActivityForResult(Activity activity, Class cls, int requestCode,
                                               Serializable... data) {
+        Intent intent = createIntent(activity, cls, data);
+        activity.startActivityForResult(intent, requestCode);
+    }
+
+    public static void startActivityForResult(Activity activity, Class cls, int requestCode,
+                                              Parcelable... data) {
         Intent intent = createIntent(activity, cls, data);
         activity.startActivityForResult(intent, requestCode);
     }
@@ -134,6 +193,11 @@ public class IntentMaster {
         startActivityForResult(activity, cls, 0, data);
     }
 
+    public static void startActivityForResult0(Activity activity, Class cls,
+                                               Parcelable... data) {
+        startActivityForResult(activity, cls, 0, data);
+    }
+
     public static void putExtra(Intent intent, Data[] data) {
         for (int i = 0; i < data.length; i++) {
             intent.putExtra(data[i].getKey(), data[i].getValue());
@@ -141,6 +205,12 @@ public class IntentMaster {
     }
 
     public static void putExtra(Intent intent, Serializable[] data) {
+        for (int i = 0; i < data.length; i++) {
+            intent.putExtra(KEY_DATA + "_" + i, data[i]);
+        }
+    }
+
+    public static void putExtra(Intent intent, Parcelable[] data) {
         for (int i = 0; i < data.length; i++) {
             intent.putExtra(KEY_DATA + "_" + i, data[i]);
         }
