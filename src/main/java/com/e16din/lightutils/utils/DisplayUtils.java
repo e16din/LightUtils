@@ -18,6 +18,12 @@ import java.lang.reflect.Method;
  * Created by e16din on 14.08.15.
  */
 public class DisplayUtils extends ColorUtils {
+
+    public static float pxToMm(final Context context, final float px) {
+        final DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        return px / TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_MM, 1, dm);
+    }
+
     public static int dpToPx(final Context context, final int dp) {
         return (int) dpToPxF(context, dp);
     }
