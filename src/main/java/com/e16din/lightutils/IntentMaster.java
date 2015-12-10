@@ -166,6 +166,11 @@ public class IntentMaster {
         context.startActivity(intent);
     }
 
+    public static void startActivityForResult(Activity activity, Class cls, int requestCode) {
+        Intent intent = createIntent(activity, cls);
+        activity.startActivityForResult(intent, requestCode);
+    }
+
     public static void startActivityForResult(Activity activity, Class cls, int requestCode,
                                               Data... data) {
         Intent intent = createIntent(activity, cls, data);
@@ -182,6 +187,10 @@ public class IntentMaster {
                                               Parcelable... data) {
         Intent intent = createIntent(activity, cls, data);
         activity.startActivityForResult(intent, requestCode);
+    }
+
+    public static void startActivityForResult0(Activity activity, Class cls) {
+        startActivityForResult(activity, cls, 0);
     }
 
     public static void startActivityForResult0(Activity activity, Class cls, Data... data) {
