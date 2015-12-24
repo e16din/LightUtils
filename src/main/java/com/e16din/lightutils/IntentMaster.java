@@ -213,28 +213,28 @@ public class IntentMaster {
     public static void startActivityForResult(@NonNull Fragment fragment, @NonNull Class cls, int requestCode) {
         Activity activity = fragment.getActivity();
         Intent intent = createIntent(activity, cls);
-        activity.startActivityForResult(intent, requestCode);
+        fragment.startActivityForResult(intent, requestCode);
     }
 
     public static void startActivityForResult(@NonNull Fragment fragment, @NonNull Class cls, int requestCode,
                                               Data... data) {
         Activity activity = fragment.getActivity();
         Intent intent = createIntent(activity, cls, data);
-        activity.startActivityForResult(intent, requestCode);
+        fragment.startActivityForResult(intent, requestCode);
     }
 
     public static void startActivityForResult(@NonNull Fragment fragment, @NonNull Class cls, int requestCode,
                                               Serializable... data) {
         Activity activity = fragment.getActivity();
         Intent intent = createIntent(activity, cls, data);
-        activity.startActivityForResult(intent, requestCode);
+        fragment.startActivityForResult(intent, requestCode);
     }
 
     public static void startActivityForResult(@NonNull Fragment fragment, @NonNull Class cls, int requestCode,
                                               Parcelable... data) {
         Activity activity = fragment.getActivity();
         Intent intent = createIntent(activity, cls, data);
-        activity.startActivityForResult(intent, requestCode);
+        fragment.startActivityForResult(intent, requestCode);
     }
 
     public static void startActivityForResult0(@NonNull Fragment fragment, @NonNull Class cls) {
@@ -260,28 +260,28 @@ public class IntentMaster {
     public static void startActivityForResult(@NonNull android.app.Fragment fragment, @NonNull Class cls, int requestCode) {
         Activity activity = fragment.getActivity();
         Intent intent = createIntent(activity, cls);
-        activity.startActivityForResult(intent, requestCode);
+        fragment.startActivityForResult(intent, requestCode);
     }
 
     public static void startActivityForResult(@NonNull android.app.Fragment fragment, @NonNull Class cls, int requestCode,
                                               Data... data) {
         Activity activity = fragment.getActivity();
         Intent intent = createIntent(activity, cls, data);
-        activity.startActivityForResult(intent, requestCode);
+        fragment.startActivityForResult(intent, requestCode);
     }
 
     public static void startActivityForResult(@NonNull android.app.Fragment fragment, @NonNull Class cls, int requestCode,
                                               Serializable... data) {
         Activity activity = fragment.getActivity();
         Intent intent = createIntent(activity, cls, data);
-        activity.startActivityForResult(intent, requestCode);
+        fragment.startActivityForResult(intent, requestCode);
     }
 
     public static void startActivityForResult(@NonNull android.app.Fragment fragment, @NonNull Class cls, int requestCode,
                                               Parcelable... data) {
         Activity activity = fragment.getActivity();
         Intent intent = createIntent(activity, cls, data);
-        activity.startActivityForResult(intent, requestCode);
+        fragment.startActivityForResult(intent, requestCode);
     }
 
     public static void startActivityForResult0(@NonNull android.app.Fragment fragment, @NonNull Class cls) {
