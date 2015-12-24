@@ -19,7 +19,7 @@ android {
     buildToolsVersion '23.0.2'
 
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 11
         targetSdkVersion 23
     }
 
@@ -37,6 +37,6 @@ task wrapper(type: Wrapper) {
 
 dependencies {
     compile 'net.danlew:android.joda:2.9.0'
-    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.koushikdutta.ion:ion:2.1.6'
 }

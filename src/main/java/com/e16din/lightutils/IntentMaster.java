@@ -104,21 +104,21 @@ public class IntentMaster {
 
     public static Intent createResultIntent(@NonNull Activity activity, Serializable... data) {
         Intent intent = new Intent();
-        activity.setResult(@NonNull Activity.RESULT_OK, intent);
+        activity.setResult(Activity.RESULT_OK, intent);
         putExtra(intent, data);
         return intent;
     }
 
     public static Intent createResultIntent(@NonNull Activity activity, Parcelable... data) {
         Intent intent = new Intent();
-        activity.setResult(@NonNull Activity.RESULT_OK, intent);
+        activity.setResult(Activity.RESULT_OK, intent);
         putExtra(intent, data);
         return intent;
     }
 
     public static Intent createResultIntent(@NonNull Activity activity, Data... data) {
         Intent intent = new Intent();
-        activity.setResult(@NonNull Activity.RESULT_OK, intent);
+        activity.setResult(Activity.RESULT_OK, intent);
         putExtra(intent, data);
         return intent;
     }
@@ -330,13 +330,13 @@ public class IntentMaster {
     //use this permission
     //<uses-permission android:name="android.permission.CALL_PHONE" />
     public static void call(@NonNull Activity activity, String phone) {
-        Intent intent = new Intent(@NonNull Intent.ACTION_CALL);
+        Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + phone));
         activity.startActivity(intent);
     }
 
     public static void sendSms(@NonNull Activity activity, String phone, String message) {
-        Intent intent = new Intent(@NonNull Intent.ACTION_VIEW);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("sms:" + phone));
         intent.putExtra("sms_body", message);
         activity.startActivity(intent);
