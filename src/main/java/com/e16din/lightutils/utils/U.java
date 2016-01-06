@@ -11,12 +11,6 @@ public class U extends SdkUtils {
     private U() {
     }
 
-//    public static boolean checkGooglePlayServiceAvailability(Context context) {
-//        GoogleApiAvailability googleAPI = GoogleApiAvailability.getInstance();
-//        int result = googleAPI.isGooglePlayServicesAvailable(context);
-//        return result == ConnectionResult.SUCCESS;
-//    }
-
     public static boolean isEmulator() {
         return Build.FINGERPRINT.startsWith("generic")
                 || Build.FINGERPRINT.startsWith("unknown")

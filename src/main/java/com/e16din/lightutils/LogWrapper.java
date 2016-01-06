@@ -2,6 +2,7 @@ package com.e16din.lightutils;
 
 import android.util.Log;
 
+@Deprecated
 public class LogWrapper {
 
 	private Object cls = null;

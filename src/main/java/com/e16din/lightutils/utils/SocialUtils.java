@@ -27,8 +27,8 @@ public class SocialUtils extends BitmapUtils {
                 Log.d("KeyHash:", context.getPackageName());
                 Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
             }
-        } catch (PackageManager.NameNotFoundException e) {
-        } catch (NoSuchAlgorithmException e) {
+        } catch (PackageManager.NameNotFoundException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
     }
 
@@ -68,6 +68,7 @@ public class SocialUtils extends BitmapUtils {
 
             return result;//Base64 packed SHA fingerprint of your packet certificate
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }

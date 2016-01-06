@@ -6,6 +6,7 @@ import java.util.ArrayList;
 /**
  * Created by e16din on 31.08.15.
  */
+@Deprecated
 public class GeoObjectCollection implements Serializable {
 //    "metaDataProperty":
 //    {

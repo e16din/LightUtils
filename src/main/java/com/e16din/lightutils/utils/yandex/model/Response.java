@@ -1,15 +1,14 @@
 package com.e16din.lightutils.utils.yandex.model;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 
 /**
  * Created by e16din on 31.08.15.
  */
+@Deprecated
 public class Response implements Serializable {
 
-    @SerializedName("GeoObjectCollection")
+    //todo: @SerializedName("GeoObjectCollection")
     private GeoObjectCollection geoObjectCollection = null;
 
     public GeoObjectCollection getGeoObjectCollection() {

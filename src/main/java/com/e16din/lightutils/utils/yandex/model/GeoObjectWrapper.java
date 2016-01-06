@@ -1,12 +1,11 @@
 package com.e16din.lightutils.utils.yandex.model;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 
 /**
  * Created by e16din on 31.08.15.
  */
+@Deprecated
 public class GeoObjectWrapper implements Serializable {
 
     //        "metaDataProperty":
@@ -49,7 +48,7 @@ public class GeoObjectWrapper implements Serializable {
 //                    "upperCorner": "37.967682 55.957565"
 //            }
 //        },
-    @SerializedName("GeoObject")
+    //todo: @SerializedName("GeoObject")
     private GeoObject geoObject = null;
 
     public GeoObject getGeoObject() {

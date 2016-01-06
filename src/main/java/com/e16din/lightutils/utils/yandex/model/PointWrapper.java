@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Created by e16din on 31.08.15.
  */
+@Deprecated
 public class PointWrapper implements Serializable {
     private String pos = null;
 
