@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
 
 import java.util.UUID;
@@ -14,37 +15,29 @@ import java.util.UUID;
  */
 public class IdUtils extends DateTimeUtils {
 
-    public static String getImei(Context context) {
+    public static String getImei(@NonNull Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getDeviceId();
     }
 
-    public static String getUdid(Context context) {
+    public static String getUdid(@NonNull Context context) {
         // for android sdk >= 9
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
-    public static String getPackageVersionName(Context context) {
-        PackageInfo pInfo = null;
-        try {
-            pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return pInfo.versionName;
+    public static String getPackageVersionName(@NonNull Context context) throws PackageManager.NameNotFoundException {
+        return getPackageInfo(context).versionName;
     }
 
-    public static int getVersionCode(Context context) {
-        int v = 0;
-        try {
-            v = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return v;
+    public static int getVersionCode(@NonNull Context context) throws PackageManager.NameNotFoundException {
+        return getPackageInfo(context).versionCode;
     }
 
-    public static String getDevGuid(Activity activity) {
+    public static PackageInfo getPackageInfo(@NonNull Context context) throws PackageManager.NameNotFoundException {
+        return context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+    }
+
+    public static String getDevGuid(@NonNull Activity activity) {
         final TelephonyManager tm = (TelephonyManager) activity.getBaseContext()
                 .getSystemService(Context.TELEPHONY_SERVICE);
 
@@ -59,7 +52,7 @@ public class IdUtils extends DateTimeUtils {
         return deviceUuid.toString();
     }
 
-    public static String getAppGuid(Activity activity) {
+    public static String getAppGuid(@NonNull Activity activity) {
         final String androidId = "" + android.provider.Settings.Secure.getString(activity.getContentResolver(),
                 android.provider.Settings.Secure.ANDROID_ID);
 

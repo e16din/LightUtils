@@ -1,5 +1,7 @@
 package com.e16din.lightutils.utils;
 
+import android.support.annotation.NonNull;
+
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -34,67 +36,67 @@ public class DateTimeUtils extends SocialUtils {
         return formatISO(DateTime.now(LOCAL_TIME_ZONE));
     }
 
-    public static Date parse(String dateTime) {
+    public static Date parse(@NonNull String dateTime) {
         return DateTime.parse(dateTime).toDate();
     }
 
     // [HH:mm]
-    public static String formatTime(String dateTime) {
+    public static String formatTime(@NonNull String dateTime) {
         return formatTime(fromString(dateTime));
     }
 
-    public static String formatTime(Date date) {
+    public static String formatTime(@NonNull Date date) {
         return formatTime(fromLong(date.getTime()));
     }
 
-    public static String formatEndTime(String startTime, int durationMinutes) {
+    public static String formatEndTime(@NonNull String startTime, int durationMinutes) {
         return formatTime(fromString(startTime).plusMinutes(durationMinutes));
     }
 
     // [HH:mm - HH:mm]
-    public static String formatStartEndTime(String dateTime, int durationMinutes) {
+    public static String formatStartEndTime(@NonNull String dateTime, int durationMinutes) {
         return formatStartEndTime(fromString(dateTime), durationMinutes);
     }
 
     // [DD MMMM YYYY]
-    public static String formatFullDate(Date date) {
+    public static String formatFullDate(@NonNull Date date) {
         return formatFullDate(fromLong(date.getTime()));
     }
 
-    public static String formatFullDate(String dateTime) {
+    public static String formatFullDate(@NonNull String dateTime) {
         return formatFullDate(fromString(dateTime));
     }
 
     // [ISO]
-    public static String formatISO(Date date) {
+    public static String formatISO(@NonNull Date date) {
         return formatISO(fromLong(date.getTime()));
     }
 
     // [Time Zones]
-    public static String toLocalTimeISO(String dateTime) {
+    public static String toLocalTimeISO(@NonNull String dateTime) {
         return formatISO(UTC_TIME_DATE_PARSER.parseDateTime(dateTime).withZone(LOCAL_TIME_ZONE));
     }
 
-    public static String toUtcTimeISO(String dateTime) {
+    public static String toUtcTimeISO(@NonNull String dateTime) {
         return formatISO(fromString(dateTime).withZone(UTC_TIME_ZONE));
     }
 
 
 
     // [Private methods]
-    private static String formatTime(DateTime dateTime) {
+    private static String formatTime(@NonNull DateTime dateTime) {
         return dateTime.toString(FORMAT_HH_MM);
     }
 
-    private static String formatFullDate(DateTime dateTime) {
+    private static String formatFullDate(@NonNull DateTime dateTime) {
         return dateTime.toString(FORMAT_DD_MMMM_YYYY);
     }
 
-    private static String formatISO(DateTime dateTime) {
+    private static String formatISO(@NonNull DateTime dateTime) {
         return dateTime.toString(FORMAT_ISO6801);
     }
 
-    private static String formatStartEndTime(DateTime dateTime, int durationMinutes) {
+    private static String formatStartEndTime(@NonNull DateTime dateTime, int durationMinutes) {
         return formatTime(dateTime) + " - " + formatTime(dateTime.plusMinutes(durationMinutes));
     }
 
@@ -103,7 +105,7 @@ public class DateTimeUtils extends SocialUtils {
         return new DateTime(time);
     }
 
-    private static DateTime fromString(String date) {
+    private static DateTime fromString(@NonNull String date) {
         return DateTime.parse(date);
     }
 }

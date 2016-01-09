@@ -13,6 +13,7 @@ public class Data implements Serializable {
     }
 
     public Data(String key, Serializable value) {
+        this();
         this.key = key;
         this.value = value;
     }

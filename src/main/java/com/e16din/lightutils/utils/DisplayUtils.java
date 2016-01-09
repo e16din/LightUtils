@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
@@ -19,36 +20,36 @@ import java.lang.reflect.Method;
  */
 public class DisplayUtils extends ColorUtils {
 
-    public static float pxToMm(final Context context, final float px) {
+    public static float pxToMm(@NonNull final Context context, final float px) {
         final DisplayMetrics dm = context.getResources().getDisplayMetrics();
         return px / TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_MM, 1, dm);
     }
 
-    public static int dpToPx(final Context context, final int dp) {
+    public static int dpToPx(@NonNull final Context context, final int dp) {
         return (int) dpToPxF(context, dp);
     }
 
-    public static int spToPx(final Context context, final int sp) {
+    public static int spToPx(@NonNull final Context context, final int sp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
     }
 
-    public static float dpToPxF(final Context context, final float dp) {
+    public static float dpToPxF(@NonNull final Context context, final float dp) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 
-    public static void setElevation(final View view, final int levelPx) {
+    public static void setElevation(@NonNull final View view, final int levelPx) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             view.setElevation(levelPx);
         }
     }
 
-    public static void setElevation(final Context context, final View view, final int levelDp) {
+    public static void setElevation(@NonNull final Context context, final View view, final int levelDp) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             view.setElevation(dpToPxF(context, levelDp));
         }
     }
 
-    public static Point getScreenRealSize(Display display) {
+    public static Point getScreenRealSize(@NonNull Display display) {
         int realWidth = 0;
         int realHeight = 0;
 
@@ -81,7 +82,7 @@ public class DisplayUtils extends ColorUtils {
         return new Point(realWidth, realHeight);
     }
 
-    public static Bitmap takeScreenshot(View view) {
+    public static Bitmap takeScreenshot(@NonNull View view) {
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),
                 Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);

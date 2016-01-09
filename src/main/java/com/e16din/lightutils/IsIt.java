@@ -1,5 +1,6 @@
 package com.e16din.lightutils;
 
+import android.support.annotation.NonNull;
 import android.util.Patterns;
 
 import java.util.regex.Pattern;
@@ -7,11 +8,11 @@ import java.util.regex.Pattern;
 /**
  * Created by e16din on 02.09.15.
  */
-public class IsIt {
+public final class IsIt {
     private IsIt() {
     }
 
-    public static boolean phone(CharSequence s, int countryId) {
+    public static boolean phone(@NonNull CharSequence s, int countryId) {
         switch (countryId) {
             case Countries.ID_RUSSIA:
                 //todo
@@ -25,16 +26,16 @@ public class IsIt {
         return false;
     }
 
-    public static boolean phone(CharSequence s) {
+    public static boolean phone(@NonNull CharSequence s) {
         return phone(s, Countries.ID_NONE);
     }
 
-    public static boolean email(CharSequence s) {
+    public static boolean email(@NonNull CharSequence s) {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         return pattern.matcher(s).matches();
     }
 
-    public static boolean number(String s) {
+    public static boolean number(@NonNull String s) {
         try {
             Integer.parseInt(s);
             return true;
@@ -43,7 +44,7 @@ public class IsIt {
         }
     }
 
-    public static boolean floatNumber(String s) {
+    public static boolean floatNumber(@NonNull String s) {
         try {
             Double.parseDouble(s);
             return true;
@@ -52,7 +53,7 @@ public class IsIt {
         }
     }
 
-    public static boolean nulll(Object obj) {
+    public static boolean nil(Object obj) {
         return obj == null;
     }
 }

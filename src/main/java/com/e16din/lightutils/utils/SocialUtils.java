@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.support.annotation.NonNull;
 import android.util.Base64;
 import android.util.Log;
 
@@ -15,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
  * Created by e16din on 14.08.15.
  */
 public class SocialUtils extends BitmapUtils {
-    public static void printKeyHash(Context context) {
+    public static void printKeyHash(@NonNull Context context) {
         // Add code to print out the key hash
         try {
             PackageInfo info = context.getPackageManager().getPackageInfo(
@@ -33,9 +34,9 @@ public class SocialUtils extends BitmapUtils {
     }
 
     //from https://github.com/VKCOM/vk-android-sdk/blob/master/vksdk_library/src/main/java/com/vk/sdk/util/VKUtil.java
-    public static String[] printCertificateFingerprint(Context context) {
+    public static String[] printCertificateFingerprint(@NonNull Context context) {
         try {
-            if (context == null || context.getPackageManager() == null)
+            if (context.getPackageManager() == null)
                 return null;
             PackageInfo info = context.getPackageManager().getPackageInfo(
                     context.getPackageName(),
@@ -73,7 +74,7 @@ public class SocialUtils extends BitmapUtils {
         }
     }
 
-    private static String toHex(byte[] bytes) {
+    private static String toHex(@NonNull byte[] bytes) {
         BigInteger bi = new BigInteger(1, bytes);
         return String.format("%0" + (bytes.length << 1) + "X", bi);
     }

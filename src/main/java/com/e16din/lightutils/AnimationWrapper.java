@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.animation.Animation;
@@ -23,10 +24,8 @@ public class AnimationWrapper {
 
     private View view = null;
 
-    public AnimationWrapper(View view) {
+    public AnimationWrapper(@NonNull View view) {
         this.view = view;
-        if (this.view == null)
-            throw new NullPointerException();
     }
 
     public void changeHeight(final int newHeight) {
@@ -137,6 +136,6 @@ public class AnimationWrapper {
     }
 
     public interface OnAnimationListener {
-        public void onAnimationEnd();
+        void onAnimationEnd();
     }
 }

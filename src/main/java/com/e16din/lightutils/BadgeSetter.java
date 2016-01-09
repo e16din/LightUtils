@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.e16din.lightutils.utils.U;
 
+@Deprecated
 public class BadgeSetter {
 
 	private static final String ZERO = "0";

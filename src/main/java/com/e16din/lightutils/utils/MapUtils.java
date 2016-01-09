@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * Created by e16din on 31.08.15.
  */
 //todo: extract deprecated methods to independent module
+@Deprecated
 public class MapUtils extends ViewUtils {
     public static final int DEFAULT_Z = 15;
     public static final int DEFAULT_WIDTH = 600;

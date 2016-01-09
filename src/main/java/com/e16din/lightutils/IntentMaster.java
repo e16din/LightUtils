@@ -1,12 +1,18 @@
 package com.e16din.lightutils;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
 import java.io.Serializable;
 
@@ -257,12 +263,14 @@ public class IntentMaster {
 
     ///
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static void startActivityForResult(@NonNull android.app.Fragment fragment, @NonNull Class cls, int requestCode) {
         Activity activity = fragment.getActivity();
         Intent intent = createIntent(activity, cls);
         fragment.startActivityForResult(intent, requestCode);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static void startActivityForResult(@NonNull android.app.Fragment fragment, @NonNull Class cls, int requestCode,
                                               Data... data) {
         Activity activity = fragment.getActivity();
@@ -270,6 +278,7 @@ public class IntentMaster {
         fragment.startActivityForResult(intent, requestCode);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static void startActivityForResult(@NonNull android.app.Fragment fragment, @NonNull Class cls, int requestCode,
                                               Serializable... data) {
         Activity activity = fragment.getActivity();
@@ -277,6 +286,7 @@ public class IntentMaster {
         fragment.startActivityForResult(intent, requestCode);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static void startActivityForResult(@NonNull android.app.Fragment fragment, @NonNull Class cls, int requestCode,
                                               Parcelable... data) {
         Activity activity = fragment.getActivity();
@@ -327,41 +337,44 @@ public class IntentMaster {
         context.startService(intent);
     }
 
-    //use this permission
-    //<uses-permission android:name="android.permission.CALL_PHONE" />
-    public static void call(@NonNull Activity activity, String phone) {
+    public static void call(@NonNull Activity activity, @NonNull String phone) {
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + phone));
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            Log.w(IntentMaster.class.getSimpleName(), "call: here to request the missing permission " +
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\" />");
+            return;
+        }
         activity.startActivity(intent);
     }
 
-    public static void sendSms(@NonNull Activity activity, String phone, String message) {
+    public static void sendSms(@NonNull Activity activity, @NonNull String phone, @NonNull String message) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("sms:" + phone));
         intent.putExtra("sms_body", message);
         activity.startActivity(intent);
     }
 
-    public static void openMap(@NonNull Activity activity, double lat, double lng, String title) {
+    public static void openMap(@NonNull Activity activity, double lat, double lng, @NonNull String title) {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse("geo:0,0?q=" + lat + "," + lng + " (" + title + ")"));
         activity.startActivity(intent);
     }
 
-    public static void openGoogleMap(@NonNull Activity activity, String text) {
+    public static void openGoogleMap(@NonNull Activity activity, @NonNull String text) {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse("geo:0,0?q=" + text));
         intent.setPackage("com.google.android.apps.maps");
         activity.startActivity(intent);
     }
 
-    public static void openNavigationMap(@NonNull Activity activity, String address) {
+    public static void openNavigationMap(@NonNull Activity activity, @NonNull String address) {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse("google.navigation:q=" + address));
         activity.startActivity(intent);
     }
 
-    public static void openMap(@NonNull Activity activity, String lat, String lng, String title) {
+    public static void openMap(@NonNull Activity activity, @NonNull String lat, @NonNull String lng, @NonNull String title) {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse("geo:0,0?q=" + lat + "," + lng + " (" + title + ")"));
         activity.startActivity(intent);
@@ -373,7 +386,7 @@ public class IntentMaster {
         activity.startActivity(intent);
     }
 
-    public static void openMap(@NonNull Activity activity, String lat, String lng) {
+    public static void openMap(@NonNull Activity activity, @NonNull String lat, @NonNull String lng) {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse("geo:0,0?q=" + lat + "," + lng));
         activity.startActivity(intent);

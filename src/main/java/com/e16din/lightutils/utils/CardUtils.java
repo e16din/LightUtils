@@ -1,5 +1,7 @@
 package com.e16din.lightutils.utils;
 
+import android.support.annotation.NonNull;
+
 import java.util.regex.Pattern;
 
 /**
@@ -8,34 +10,30 @@ import java.util.regex.Pattern;
 public class CardUtils extends MapUtils {
 
     //LUHN Formula (mod10)
-    public static boolean validateCardNumber(String n) {
-        try {
-            n = n.replace(" ", "");
-            int j = n.length();
+    public static boolean validateCardNumber(@NonNull String n) {
+        n = n.replace(" ", "");
+        int j = n.length();
 
-            String[] s1 = new String[j];
-            for (int i = 0; i < n.length(); i++) s1[i] = "" + n.charAt(i);
+        String[] s1 = new String[j];
+        for (int i = 0; i < n.length(); i++) s1[i] = "" + n.charAt(i);
 
-            int checksum = 0;
+        int checksum = 0;
 
-            for (int i = s1.length - 1; i >= 0; i -= 2) {
-                int k = 0;
+        for (int i = s1.length - 1; i >= 0; i -= 2) {
+            int k = 0;
 
-                if (i > 0) {
-                    k = Integer.valueOf(s1[i - 1]) * 2;
-                    if (k > 9) {
-                        String s = "" + k;
-                        k = Integer.valueOf(s.substring(0, 1)) + Integer.valueOf(s.substring(1));
-                    }
-                    checksum += Integer.valueOf(s1[i]) + k;
-                } else
-                    checksum += Integer.valueOf(s1[0]);
-            }
-            return ((checksum % 10) == 0);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            if (i > 0) {
+                k = Integer.valueOf(s1[i - 1]) * 2;
+                if (k > 9) {
+                    String s = "" + k;
+                    k = Integer.valueOf(s.substring(0, 1)) + Integer.valueOf(s.substring(1));
+                }
+                checksum += Integer.valueOf(s1[i]) + k;
+            } else
+                checksum += Integer.valueOf(s1[0]);
         }
+
+        return ((checksum % 10) == 0);
     }
 
     //from http://stackoverflow.com/a/23814692

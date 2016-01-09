@@ -9,8 +9,8 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -19,7 +19,7 @@ import java.io.InputStream;
  */
 public class BitmapUtils extends DisplayUtils {
 
-    public static Bitmap getThumbnail(Context context, Uri uri) throws IOException {
+    public static Bitmap getThumbnail(@NonNull Context context, @NonNull Uri uri) throws IOException {
         InputStream input = context.getContentResolver().openInputStream(uri);
 
         BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
@@ -55,7 +55,7 @@ public class BitmapUtils extends DisplayUtils {
             return k;
     }
 
-    public static Bitmap getMaskedBitmap(Bitmap bmpSource, Bitmap bmpMask) {
+    public static Bitmap getMaskedBitmap(@NonNull Bitmap bmpSource, @NonNull Bitmap bmpMask) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             options.inMutable = true;
@@ -71,7 +71,9 @@ public class BitmapUtils extends DisplayUtils {
             bmpSource.recycle();
         }
 
-        bitmap.setHasAlpha(true);
+        if (SdkUtils.hasHoneycombMR1()) {
+            bitmap.setHasAlpha(true);
+        }
         Canvas canvas = new Canvas(bitmap);
 
         Paint paint = new Paint();

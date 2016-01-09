@@ -7,6 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by e16din on 02.09.15.
  */
+@Deprecated
 public class LogUtils extends SecureUtils {
 
     private static String tag = "LogUtils";

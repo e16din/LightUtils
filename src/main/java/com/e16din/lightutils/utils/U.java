@@ -4,9 +4,10 @@ import android.content.Context;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
+import android.support.annotation.NonNull;
 
 
-public class U extends SdkUtils {
+public final class U extends SdkUtils {
 
     private U() {
     }
@@ -22,12 +23,12 @@ public class U extends SdkUtils {
                 || "google_sdk".equals(Build.PRODUCT);
     }
 
-    public static boolean isGpsEnabled(Context context) {
+    public static boolean isGpsEnabled(@NonNull Context context) {
         final LocationManager manager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         return manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 
-    public static boolean isOnline(Context context) {
+    public static boolean isOnline(@NonNull Context context) {
         if (context == null)
             return false;
 
@@ -35,7 +36,7 @@ public class U extends SdkUtils {
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting();
     }
 
-    public static boolean runIfOnline(boolean isOnline, Context context, Runnable callback) {
+    public static boolean runIfOnline(boolean isOnline, @NonNull Context context, @NonNull Runnable callback) {
         boolean result = isOnline(context);
         if (result == isOnline)
             callback.run();

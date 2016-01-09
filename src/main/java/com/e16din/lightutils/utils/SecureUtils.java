@@ -1,5 +1,7 @@
 package com.e16din.lightutils.utils;
 
+import android.support.annotation.NonNull;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -9,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class SecureUtils {
 
-    public static String sha256(String base)
+    public static String sha256(@NonNull String base)
             throws NoSuchAlgorithmException, UnsupportedEncodingException {
 
         MessageDigest md = MessageDigest.getInstance("SHA-256");
