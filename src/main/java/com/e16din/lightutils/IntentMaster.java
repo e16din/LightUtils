@@ -27,7 +27,7 @@ public class IntentMaster {
     public static String KEY_DATA = "data";
 
     public static Serializable getExtra(@NonNull Intent intent, @NonNull String key) {
-        return intent.getExtras().getSerializable(key);
+        return intent.getExtras() == null ? null : intent.getExtras().getSerializable(key);
     }
 
     public static Serializable getExtra(@NonNull Intent intent) {
@@ -52,7 +52,7 @@ public class IntentMaster {
 
 
     public static Parcelable getExtraP(@NonNull Intent intent, @NonNull String key) {
-        return intent.getExtras().getParcelable(key);
+        return intent.getExtras() == null ? null : intent.getExtras().getParcelable(key);
     }
 
     public static Parcelable getExtraP(@NonNull Intent intent) {
