@@ -96,18 +96,6 @@ public class IntentMaster {
         return hasExtra(activity.getIntent());
     }
 
-    public static Intent createIntent(Context context, @NonNull Class cls, Serializable... data) {
-        Intent intent = new Intent(context, cls);
-        putExtra(intent, data);
-        return intent;
-    }
-
-    public static Intent createIntent(Context context, @NonNull Class cls, Parcelable... data) {
-        Intent intent = new Intent(context, cls);
-        putExtra(intent, data);
-        return intent;
-    }
-
     public static Intent createResultIntent(@NonNull Activity activity, Serializable... data) {
         Intent intent = new Intent();
         activity.setResult(Activity.RESULT_OK, intent);
@@ -144,14 +132,48 @@ public class IntentMaster {
         activity.finish();
     }
 
-    public static Intent createIntent(Context context, @NonNull Class cls, Data... data) {
+    public static Intent createIntent(@NonNull Context context, @NonNull Class cls, Serializable... data) {
         Intent intent = new Intent(context, cls);
         putExtra(intent, data);
         return intent;
     }
 
-    public static Intent createIntent(Context context, @NonNull Class cls) {
+    public static Intent createIntent(@NonNull Context context, @NonNull Class cls, Parcelable... data) {
+        Intent intent = new Intent(context, cls);
+        putExtra(intent, data);
+        return intent;
+    }
+
+    public static Intent createIntent(@NonNull Context context, @NonNull Class cls, Data... data) {
+        Intent intent = new Intent(context, cls);
+        putExtra(intent, data);
+        return intent;
+    }
+
+    public static Intent createIntent(@NonNull Context context, @NonNull Class cls) {
         return new Intent(context, cls);
+    }
+
+    public static Intent createIntent(@NonNull String action, Serializable... data) {
+        Intent intent = new Intent(action);
+        putExtra(intent, data);
+        return intent;
+    }
+
+    public static Intent createIntent(@NonNull String action, Parcelable... data) {
+        Intent intent = new Intent(action);
+        putExtra(intent, data);
+        return intent;
+    }
+
+    public static Intent createIntent(@NonNull String action, Data... data) {
+        Intent intent = new Intent(action);
+        putExtra(intent, data);
+        return intent;
+    }
+
+    public static Intent createIntent(@NonNull String action) {
+        return new Intent(action);
     }
 
     public static void startActivity(Context context, @NonNull Class cls) {
@@ -311,6 +333,73 @@ public class IntentMaster {
                                                Parcelable... data) {
         startActivityForResult(fragment, cls, 0, data);
     }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void sendBroadcast(@NonNull android.app.Fragment fragment, @NonNull String action) {
+        Intent intent = createIntent(action);
+        fragment.getActivity().sendBroadcast(intent);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void sendBroadcast(@NonNull android.app.Fragment fragment, @NonNull String action, Data... data) {
+        Intent intent = createIntent(action, data);
+        fragment.getActivity().sendBroadcast(intent);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void sendBroadcast(@NonNull android.app.Fragment fragment, @NonNull String action, Serializable... data) {
+        Intent intent = createIntent(action, data);
+        fragment.getActivity().sendBroadcast(intent);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void sendBroadcast(@NonNull android.app.Fragment fragment, @NonNull String action, Parcelable... data) {
+        Intent intent = createIntent(action, data);
+        fragment.getActivity().sendBroadcast(intent);
+    }
+
+
+    public static void sendBroadcast(@NonNull Fragment fragment, @NonNull String action) {
+        Intent intent = createIntent(action);
+        fragment.getActivity().sendBroadcast(intent);
+    }
+
+    public static void sendBroadcast(@NonNull Fragment fragment, @NonNull String action, Data... data) {
+        Intent intent = createIntent(action, data);
+        fragment.getActivity().sendBroadcast(intent);
+    }
+
+    public static void sendBroadcast(@NonNull Fragment fragment, @NonNull String action, Serializable... data) {
+        Intent intent = createIntent(action, data);
+        fragment.getActivity().sendBroadcast(intent);
+    }
+
+    public static void sendBroadcast(@NonNull Fragment fragment, @NonNull String action, Parcelable... data) {
+        Intent intent = createIntent(action, data);
+        fragment.getActivity().sendBroadcast(intent);
+    }
+
+
+    public static void sendBroadcast(@NonNull Activity activity, @NonNull String action) {
+        Intent intent = createIntent(action);
+        activity.sendBroadcast(intent);
+    }
+
+    public static void sendBroadcast(@NonNull Activity activity, @NonNull String action, Data... data) {
+        Intent intent = createIntent(action, data);
+        activity.sendBroadcast(intent);
+    }
+
+    public static void sendBroadcast(@NonNull Activity activity, @NonNull String action, Serializable... data) {
+        Intent intent = createIntent(action, data);
+        activity.sendBroadcast(intent);
+    }
+
+    public static void sendBroadcast(@NonNull Activity activity, @NonNull String action, Parcelable... data) {
+        Intent intent = createIntent(action, data);
+        activity.sendBroadcast(intent);
+    }
+
 
     public static void putExtra(@NonNull Intent intent, Data[] data) {
         for (int i = 0; i < data.length; i++) {
