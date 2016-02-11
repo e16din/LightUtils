@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 
+import net.danlew.android.joda.JodaTimeAndroid;
+
 import java.util.Locale;
 
 /**
@@ -30,6 +32,7 @@ public final class LightUtils {
     public static void init(@NonNull final Context context) {
         if (Holder.HOLDER_INSTANCE.context == null) {
             Holder.HOLDER_INSTANCE.context = context.getApplicationContext();
+            JodaTimeAndroid.init(Holder.HOLDER_INSTANCE.context);
         }
     }
 
