@@ -1,23 +1,20 @@
-package com.e16din.lightutils;
+package com.e16din.lightutils.tools;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import com.google.gson.Gson;
+import com.e16din.lightutils.LightUtils;
 
 import java.lang.reflect.Type;
 import java.util.Set;
 
 public final class DataManager {
 
-    private Context context;
-    private boolean needCommit;
-    private Gson gson = new Gson();
+    private boolean needCommit = true;
 
     private static class Holder {
         public static final DataManager HOLDER_INSTANCE = new DataManager();
@@ -26,23 +23,16 @@ public final class DataManager {
     private DataManager() {
     }
 
-    public static void init(@NonNull final Context context, boolean needCommit) {
-        if (Holder.HOLDER_INSTANCE.context == null) {
-            Holder.HOLDER_INSTANCE.context = context.getApplicationContext();
-            Holder.HOLDER_INSTANCE.needCommit = needCommit;
-        }
-    }
-
-    public static void init(@NonNull final Context context) {
-        init(context, false);
-    }
-
     public static DataManager getInstance() {
         return Holder.HOLDER_INSTANCE;
     }
 
     public SharedPreferences getDefaultSharedPreferences() {
-        return PreferenceManager.getDefaultSharedPreferences(context);
+        try {
+            return PreferenceManager.getDefaultSharedPreferences(LightUtils.getInstance().getContext());
+        } catch (NullPointerException e) {
+            throw new NullPointerException("Please initialize LightUtils before use DataManager. LightUtils.init(context))");
+        }
     }
 
     public boolean contains(@NonNull final String key) {
@@ -51,7 +41,7 @@ public final class DataManager {
 
     public <T> void save(@NonNull final String key, final T data) {
         final SharedPreferences.Editor editor = getDefaultSharedPreferences().edit();
-        editor.putString(key, gson.toJson(data));
+        editor.putString(key, LightUtils.getInstance().getGson().toJson(data));
         apply(editor);
     }
 
@@ -122,7 +112,7 @@ public final class DataManager {
             return null;
         }
 
-        return gson.fromJson(string, type);
+        return LightUtils.getInstance().getGson().fromJson(string, type);
     }
 
     public String loadString(@NonNull final String key) {
@@ -172,5 +162,14 @@ public final class DataManager {
         }
 
         return getDefaultSharedPreferences().getFloat(key, -1f);
+    }
+
+
+    public boolean needCommit() {
+        return needCommit;
+    }
+
+    public void setNeedCommit(boolean needCommit) {
+        this.needCommit = needCommit;
     }
 }

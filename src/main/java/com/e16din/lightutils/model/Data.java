@@ -1,4 +1,4 @@
-package com.e16din.lightutils;
+package com.e16din.lightutils.model;
 
 import java.io.Serializable;
 

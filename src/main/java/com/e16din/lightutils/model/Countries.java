@@ -1,4 +1,4 @@
-package com.e16din.lightutils;
+package com.e16din.lightutils.model;
 
 /**
  * Created by e16din on 04.09.15.

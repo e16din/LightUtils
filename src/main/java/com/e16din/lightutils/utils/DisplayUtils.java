@@ -20,6 +20,11 @@ import java.lang.reflect.Method;
  */
 public class DisplayUtils extends ColorUtils {
 
+    public static float pxToSp(@NonNull Context context, float px) {
+        float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
+        return px / scaledDensity;
+    }
+
     public static float pxToMm(@NonNull final Context context, final float px) {
         final DisplayMetrics dm = context.getResources().getDisplayMetrics();
         return px / TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_MM, 1, dm);

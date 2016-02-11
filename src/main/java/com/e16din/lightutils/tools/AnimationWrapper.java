@@ -1,4 +1,4 @@
-package com.e16din.lightutils;
+package com.e16din.lightutils.tools;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;

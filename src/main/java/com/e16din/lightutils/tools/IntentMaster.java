@@ -1,4 +1,4 @@
-package com.e16din.lightutils;
+package com.e16din.lightutils.tools;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -13,6 +13,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+
+import com.e16din.lightutils.model.Data;
 
 import java.io.Serializable;
 

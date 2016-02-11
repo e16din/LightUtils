@@ -7,7 +7,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 
 
-public final class U extends SdkUtils {
+public final class U extends TextViewUtils {
 
     private U() {
     }
