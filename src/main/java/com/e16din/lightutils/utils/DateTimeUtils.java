@@ -82,7 +82,6 @@ public class DateTimeUtils extends SocialUtils {
     }
 
 
-
     // [Private methods]
     private static String formatTime(@NonNull DateTime dateTime) {
         return dateTime.toString(FORMAT_HH_MM);
@@ -108,4 +107,32 @@ public class DateTimeUtils extends SocialUtils {
     private static DateTime fromString(@NonNull String date) {
         return DateTime.parse(date);
     }
+
+    private static int calculateAge(int minusYears,
+                                    int minusMonths,
+                                    int minusDays,
+                                    int minusHours,
+                                    int minusMinutes,
+                                    int minusSeconds) {
+        return DateTime.now()
+                .minusYears(minusYears)
+                .minusMonths(minusMonths)
+                .minusDays(minusDays)
+                .minusHours(minusHours)
+                .minusMinutes(minusMinutes)
+                .minusSeconds(minusSeconds)
+                .getYear();
+    }
+
+    private static int calculateAge(@NonNull DateTime minusDate) {
+        return calculateAge(
+                minusDate.getYear(),
+                minusDate.getMonthOfYear(),
+                minusDate.getDayOfMonth(),
+                minusDate.getHourOfDay(),
+                minusDate.getMinuteOfHour(),
+                minusDate.getSecondOfMinute());
+    }
+
+
 }
