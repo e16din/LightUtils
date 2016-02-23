@@ -11,6 +11,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 
+import com.e16din.lightutils.LightUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -19,7 +21,9 @@ import java.io.InputStream;
  */
 public class BitmapUtils extends DisplayUtils {
 
-    public static Bitmap getThumbnail(@NonNull Context context, @NonNull Uri uri) throws IOException {
+    public static Bitmap getThumbnail(@NonNull Uri uri) throws IOException {
+        final Context context = LightUtils.getInstance().getContext();
+
         InputStream input = context.getContentResolver().openInputStream(uri);
 
         BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
@@ -34,7 +38,7 @@ public class BitmapUtils extends DisplayUtils {
         int originalSize = (onlyBoundsOptions.outHeight > onlyBoundsOptions.outWidth) ? onlyBoundsOptions.outHeight
                 : onlyBoundsOptions.outWidth;
 
-        int size = dpToPx(context, 80);
+        int size = dpToPx(80);
         double ratio = (originalSize > size) ? (originalSize / size) : 1.0;
 
         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();

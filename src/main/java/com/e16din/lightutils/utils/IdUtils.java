@@ -8,6 +8,8 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
 
+import com.e16din.lightutils.LightUtils;
+
 import java.util.UUID;
 
 /**
@@ -15,25 +17,29 @@ import java.util.UUID;
  */
 public class IdUtils extends DateTimeUtils {
 
-    public static String getImei(@NonNull Context context) {
+    public static String getImei() {
+        final Context context = LightUtils.getInstance().getContext();
+
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getDeviceId();
     }
 
-    public static String getUdid(@NonNull Context context) {
+    public static String getUdid() {
+        final Context context = LightUtils.getInstance().getContext();
         // for android sdk >= 9
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
-    public static String getPackageVersionName(@NonNull Context context) throws PackageManager.NameNotFoundException {
-        return getPackageInfo(context).versionName;
+    public static String getPackageVersionName() throws PackageManager.NameNotFoundException {
+        return getPackageInfo().versionName;
     }
 
-    public static int getVersionCode(@NonNull Context context) throws PackageManager.NameNotFoundException {
-        return getPackageInfo(context).versionCode;
+    public static int getVersionCode() throws PackageManager.NameNotFoundException {
+        return getPackageInfo().versionCode;
     }
 
-    public static PackageInfo getPackageInfo(@NonNull Context context) throws PackageManager.NameNotFoundException {
+    public static PackageInfo getPackageInfo() throws PackageManager.NameNotFoundException {
+        final Context context = LightUtils.getInstance().getContext();
         return context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
     }
 

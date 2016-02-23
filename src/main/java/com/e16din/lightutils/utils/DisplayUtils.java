@@ -13,6 +13,8 @@ import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
 
+import com.e16din.lightutils.LightUtils;
+
 import java.lang.reflect.Method;
 
 /**
@@ -20,37 +22,39 @@ import java.lang.reflect.Method;
  */
 public class DisplayUtils extends ColorUtils {
 
-    public static float pxToSp(@NonNull Context context, float px) {
+    public static float pxToSp(float px) {
+        final Context context = LightUtils.getInstance().getContext();
+
         float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
         return px / scaledDensity;
     }
 
-    public static float pxToMm(@NonNull final Context context, final float px) {
+    public static float pxToMm(final float px) {
+        final Context context = LightUtils.getInstance().getContext();
+
         final DisplayMetrics dm = context.getResources().getDisplayMetrics();
         return px / TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_MM, 1, dm);
     }
 
-    public static int dpToPx(@NonNull final Context context, final int dp) {
-        return (int) dpToPxF(context, dp);
+    public static int dpToPx(final int dp) {
+        return (int) dpToPxF(dp);
     }
 
-    public static int spToPx(@NonNull final Context context, final int sp) {
+    public static int spToPx(final int sp) {
+        final Context context = LightUtils.getInstance().getContext();
+
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
     }
 
-    public static float dpToPxF(@NonNull final Context context, final float dp) {
+    public static float dpToPxF(final float dp) {
+        final Context context = LightUtils.getInstance().getContext();
+
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 
     public static void setElevation(@NonNull final View view, final int levelPx) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             view.setElevation(levelPx);
-        }
-    }
-
-    public static void setElevation(@NonNull final Context context, final View view, final int levelDp) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            view.setElevation(dpToPxF(context, levelDp));
         }
     }
 

@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import android.util.Base64;
 import android.util.Log;
 
+import com.e16din.lightutils.LightUtils;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -16,7 +18,9 @@ import java.security.NoSuchAlgorithmException;
  * Created by e16din on 14.08.15.
  */
 public class SocialUtils extends BitmapUtils {
-    public static void printKeyHash(@NonNull Context context) {
+    public static void printKeyHash() {
+        final Context context = LightUtils.getInstance().getContext();
+
         // Add code to print out the key hash
         try {
             PackageInfo info = context.getPackageManager().getPackageInfo(
@@ -34,7 +38,9 @@ public class SocialUtils extends BitmapUtils {
     }
 
     //from https://github.com/VKCOM/vk-android-sdk/blob/master/vksdk_library/src/main/java/com/vk/sdk/util/VKUtil.java
-    public static String[] printCertificateFingerprint(@NonNull Context context) {
+    public static String[] printCertificateFingerprint() {
+        final Context context = LightUtils.getInstance().getContext();
+
         try {
             if (context.getPackageManager() == null)
                 return null;
