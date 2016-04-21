@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -14,6 +13,7 @@ import android.view.Display;
 import android.view.View;
 
 import com.e16din.lightutils.LightUtils;
+import com.e16din.lightutils.model.Size;
 
 import java.lang.reflect.Method;
 
@@ -58,7 +58,7 @@ public class DisplayUtils extends ColorUtils {
         }
     }
 
-    public static Point getScreenRealSize(@NonNull Display display) {
+    public static Size getScreenRealSize(@NonNull Display display) {
         int realWidth = 0;
         int realHeight = 0;
 
@@ -88,7 +88,7 @@ public class DisplayUtils extends ColorUtils {
             realHeight = display.getHeight();
         }
 
-        return new Point(realWidth, realHeight);
+        return new Size(realWidth, realHeight);
     }
 
     public static Bitmap takeScreenshot(@NonNull View view) {

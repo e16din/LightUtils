@@ -1,17 +1,27 @@
 package com.e16din.lightutils.utils;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.e16din.lightutils.LightUtils;
+
+import java.util.List;
 
 
 public final class U extends TextViewUtils {
 
     private U() {
+    }
+
+    public static void log(String text) {
+        Log.i("U.Log", text);
     }
 
     public static boolean isEmulator() {
@@ -45,5 +55,21 @@ public final class U extends TextViewUtils {
             callback.run();
 
         return result;
+    }
+
+    public static boolean isCallable(Context context, Intent intent) {
+        List<ResolveInfo> list = context.getPackageManager().queryIntentActivities(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+        return list.size() > 0;
+    }
+
+    public static String getDeviceName() {
+        String manufacturer = Build.MANUFACTURER;
+        String model = Build.MODEL;
+        if (model.startsWith(manufacturer)) {
+            return model;
+        } else {
+            return manufacturer + " " + model;
+        }
     }
 }

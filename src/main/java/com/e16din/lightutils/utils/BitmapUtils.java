@@ -12,6 +12,16 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 
 import com.e16din.lightutils.LightUtils;
+import com.facebook.common.executors.CallerThreadExecutor;
+import com.facebook.common.references.CloseableReference;
+import com.facebook.datasource.DataSource;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.common.ImageDecodeOptions;
+import com.facebook.imagepipeline.core.ImagePipeline;
+import com.facebook.imagepipeline.datasource.BaseBitmapDataSubscriber;
+import com.facebook.imagepipeline.image.CloseableImage;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -86,5 +96,22 @@ public class BitmapUtils extends DisplayUtils {
         bmpMask.recycle();
 
         return bitmap;
+    }
+
+    public static void loadFrescoBitmap(Context context, String url, BaseBitmapDataSubscriber subscriber) {
+        ImageDecodeOptions decodeOptions = ImageDecodeOptions.newBuilder()
+                .build();
+
+        ImageRequest request = ImageRequestBuilder
+                .newBuilderWithSource(Uri.parse(url))
+                .setImageDecodeOptions(decodeOptions)
+                .setLowestPermittedRequestLevel(ImageRequest.RequestLevel.FULL_FETCH)
+                .build();
+
+        ImagePipeline imagePipeline = Fresco.getImagePipeline();
+        DataSource<CloseableReference<CloseableImage>>
+                dataSource = imagePipeline.fetchDecodedImage(request, context);
+
+        dataSource.subscribe(subscriber, CallerThreadExecutor.getInstance());
     }
 }

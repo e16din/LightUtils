@@ -8,7 +8,7 @@ import android.view.View;
 /**
  * Created by e16din on 02.09.15.
  */
-public class ViewUtils extends LogUtils {
+public class ViewUtils extends SecureUtils {
 
     public static void hideView(@NonNull View v) {
         v.setVisibility(View.INVISIBLE);
