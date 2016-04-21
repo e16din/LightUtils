@@ -16,7 +16,7 @@ User user = (User) IntentMaster.getExtra(this);
 ```
 
 ## DataManager
-Simple way to save your data to shared preferences 
+Simple way to put your data to shared preferences
 
 ```java
 //save
@@ -42,6 +42,6 @@ buildscript {
 }
 
 dependencies {
-    compile 'com.github.e16din:LightUtils:1.2.0'
+    compile 'com.github.e16din:LightUtils:1.2.7'
 }
 ```
