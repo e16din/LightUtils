@@ -1,6 +1,17 @@
 # LightUtils
 Light utils for more productivity
 
+## Init
+```java
+//Application onCreate
+@Override
+public void onCreate() {
+    super.onCreate();
+
+    LightUtils.init(this);//set application context
+}
+```
+
 ## IntentMaster
 Simple way to start activity with your data
 
@@ -42,6 +53,6 @@ buildscript {
 }
 
 dependencies {
-    compile 'com.github.e16din:LightUtils:1.2.7'
+    compile 'com.github.e16din:LightUtils:1.2.8'
 }
 ```
