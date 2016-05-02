@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
 
 import com.e16din.lightutils.LightUtils;
@@ -43,7 +42,7 @@ public class IdUtils extends DateTimeUtils {
         return context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
     }
 
-    public static String getDevGuid(@NonNull Activity activity) {
+    public static String getDevGuid(Activity activity) {
         final TelephonyManager tm = (TelephonyManager) activity.getBaseContext()
                 .getSystemService(Context.TELEPHONY_SERVICE);
 
@@ -58,7 +57,7 @@ public class IdUtils extends DateTimeUtils {
         return deviceUuid.toString();
     }
 
-    public static String getAppGuid(@NonNull Activity activity) {
+    public static String getAppGuid(Activity activity) {
         final String androidId = "" + android.provider.Settings.Secure.getString(activity.getContentResolver(),
                 android.provider.Settings.Secure.ANDROID_ID);
 

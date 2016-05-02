@@ -7,7 +7,6 @@ import android.content.pm.ResolveInfo;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.e16din.lightutils.LightUtils;
@@ -49,7 +48,7 @@ public final class U extends TextViewUtils {
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting();
     }
 
-    public static boolean runIfOnline(boolean isOnline, @NonNull Runnable callback) {
+    public static boolean runIfOnline(boolean isOnline, Runnable callback) {
         boolean result = isOnline();
         if (result == isOnline)
             callback.run();

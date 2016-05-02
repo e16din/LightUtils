@@ -2,9 +2,6 @@ package com.e16din.lightutils;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.NonNull;
-
-import com.google.gson.Gson;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
@@ -16,7 +13,6 @@ import java.util.Locale;
 public final class LightUtils {
 
     private Context context;
-    private Gson gson = new Gson();
 
     private LightUtils() {
     }
@@ -29,7 +25,7 @@ public final class LightUtils {
         return Holder.HOLDER_INSTANCE;
     }
 
-    public static void init(@NonNull final Context context) {
+    public static void init(final Context context) {
         if (Holder.HOLDER_INSTANCE.context == null) {
             Holder.HOLDER_INSTANCE.context = context.getApplicationContext();
             JodaTimeAndroid.init(Holder.HOLDER_INSTANCE.context);
@@ -50,13 +46,5 @@ public final class LightUtils {
 
     public void setContext(Context context) {
         this.context = context;
-    }
-
-    public Gson getGson() {
-        return gson;
-    }
-
-    public void setGson(Gson gson) {
-        this.gson = gson;
     }
 }

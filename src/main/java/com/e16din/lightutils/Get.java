@@ -1,6 +1,5 @@
 package com.e16din.lightutils;
 
-import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import java.util.List;
@@ -13,37 +12,37 @@ public final class Get {
     private Get() {
     }
 
-    public static int size(@NonNull Object obj) {
+    public static int size(Object obj) {
         return size(obj + "");
     }
 
-    public static int size(@NonNull CharSequence str) {
+    public static int size(CharSequence str) {
         return str.length();
     }
 
-    public static int size(@NonNull TextView tv) {
+    public static int size(TextView tv) {
         return tv.length();
     }
 
-    public static int size(@NonNull List list) {
+    public static int size(List list) {
         return list.size();
     }
 
-    public static int size(@NonNull Object[] array) {
+    public static int size(Object[] array) {
         return array.length;
     }
 
 
-    public static int length(@NonNull CharSequence str) {
+    public static int length(CharSequence str) {
         return str.length();
     }
 
-    public static int length(@NonNull TextView tv) {
+    public static int length(TextView tv) {
         return tv.length();
     }
 
 
-    public static String string(@NonNull Object obj) {
+    public static String string(Object obj) {
 
         if (obj instanceof List)
             return "size of list: " + ((List) obj).size();
@@ -53,7 +52,7 @@ public final class Get {
         return obj.toString();
     }
 
-    public static String string(@NonNull TextView tv) {
+    public static String string(TextView tv) {
         return tv.getText().toString();
     }
 }

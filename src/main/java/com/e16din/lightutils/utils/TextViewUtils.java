@@ -1,8 +1,6 @@
 package com.e16din.lightutils.utils;
 
 import android.app.Activity;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
 import android.text.Html;
 import android.widget.TextView;
 
@@ -11,11 +9,11 @@ import android.widget.TextView;
  */
 public class TextViewUtils extends SdkUtils {
 
-    public static void updateHtml(@NonNull TextView tv) {
+    public static void updateHtml(TextView tv) {
         tv.setText(Html.fromHtml(tv.getText().toString()));
     }
 
-    public static void updateHtml(@NonNull Activity activity, @IdRes int tvId) {
+    public static void updateHtml(Activity activity, int tvId) {
         TextView tv = (TextView) activity.findViewById(tvId);
         if (tv != null)
             tv.setText(Html.fromHtml(tv.getText().toString()));

@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
@@ -52,13 +51,13 @@ public class DisplayUtils extends ColorUtils {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 
-    public static void setElevation(@NonNull final View view, final int levelPx) {
+    public static void setElevation(final View view, final int levelPx) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             view.setElevation(levelPx);
         }
     }
 
-    public static Size getScreenRealSize(@NonNull Display display) {
+    public static Size getScreenRealSize(Display display) {
         int realWidth = 0;
         int realHeight = 0;
 
@@ -91,7 +90,7 @@ public class DisplayUtils extends ColorUtils {
         return new Size(realWidth, realHeight);
     }
 
-    public static Bitmap takeScreenshot(@NonNull View view) {
+    public static Bitmap takeScreenshot(View view) {
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),
                 Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);

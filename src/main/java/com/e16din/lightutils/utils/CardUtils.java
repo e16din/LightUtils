@@ -1,7 +1,5 @@
 package com.e16din.lightutils.utils;
 
-import android.support.annotation.NonNull;
-
 import java.util.regex.Pattern;
 
 /**
@@ -10,7 +8,7 @@ import java.util.regex.Pattern;
 public class CardUtils extends MapUtils {
 
     //LUHN Formula (mod10)
-    public static boolean validateCardNumber(@NonNull String n) {
+    public static boolean validateCardNumber(String n) {
         n = n.replace(" ", "");
         int j = n.length();
 
