@@ -30,6 +30,6 @@ buildscript {
 }
 
 dependencies {
-    compile 'com.github.e16din:LightUtils:1.3.0'
+    compile 'com.github.e16din:LightUtils:1.3.3'
 }
 ```
