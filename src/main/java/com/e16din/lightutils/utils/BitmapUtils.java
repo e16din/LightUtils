@@ -74,7 +74,7 @@ public class BitmapUtils extends DisplayUtils {
             bmpSource.recycle();
         }
 
-        if (SdkUtils.hasHoneycombMR1()) {
+        if (DeviceUtils.hasHoneycombMR1()) {
             bitmap.setHasAlpha(true);
         }
         Canvas canvas = new Canvas(bitmap);

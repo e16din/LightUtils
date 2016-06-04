@@ -31,11 +31,11 @@ public class AnimationWrapper {
         changeHeight(newHeight, null);
     }
 
-    public void changeHeight(final int newHeight, final OnAnimationListener listener) {
+    public void changeHeight(final int newHeight, final AnimationListener listener) {
         changeHeight(newHeight, listener, DEFAULT_DURATION);
     }
 
-    public void changeHeight(final int newHeight, final OnAnimationListener listener, int duration) {
+    public void changeHeight(final int newHeight, final AnimationListener listener, int duration) {
         view.measure(MeasureSpec.makeMeasureSpec(view.getHeight(),
                 MeasureSpec.UNSPECIFIED), MeasureSpec.makeMeasureSpec(
                 newHeight, MeasureSpec.AT_MOST));
@@ -58,27 +58,13 @@ public class AnimationWrapper {
             }
         };
 
-        if (listener != null)
-            a.setAnimationListener(new AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    listener.onAnimationEnd();
-                }
-            });
+        a.setAnimationListener(listener);
 
         a.setDuration(duration);
         view.startAnimation(a);
     }
 
-    public void animatePacman(int duration, final OnAnimationListener listener) {
+    public void animatePacman(int duration, final AnimationListener listener) {
         final boolean isImageView = (view instanceof ImageView);
         Drawable drawable = isImageView ? ((ImageView) view).getDrawable()
                 : view.getBackground();
@@ -114,27 +100,9 @@ public class AnimationWrapper {
             }
         };
 
-        if (listener != null)
-            a.setAnimationListener(new AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    listener.onAnimationEnd();
-                }
-            });
+        a.setAnimationListener(listener);
 
         a.setDuration(duration);
         view.startAnimation(a);
-    }
-
-    public interface OnAnimationListener {
-        void onAnimationEnd();
     }
 }

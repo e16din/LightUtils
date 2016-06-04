@@ -1,6 +1,10 @@
 package com.e16din.lightutils.utils;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.ColorInt;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.View;
 
 /**
@@ -50,5 +54,33 @@ public class ViewUtils extends SecureUtils {
 
     public static boolean isGone(View v) {
         return v.getVisibility() == View.GONE;
+    }
+
+
+    public static View setOnClickListener(Activity activity,
+                                          int viewId,
+                                          View.OnClickListener onClickListener) {
+        return setOnClickListener(activity.findViewById(viewId), onClickListener);
+    }
+
+    public static View setOnClickListener(View v,
+                                          int viewId,
+                                          View.OnClickListener onClickListener) {
+        return setOnClickListener(v.findViewById(viewId), onClickListener);
+    }
+
+    public static View setOnClickListener(View v, View.OnClickListener onClickListener) {
+        v.setOnClickListener(onClickListener);
+        return v;
+    }
+
+    public static void updateTint(View view, @ColorInt int color) {
+        Drawable wrappedDrawable = DrawableCompat.wrap(view.getBackground());
+        DrawableCompat.setTint(wrappedDrawable.mutate(), color);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            view.setBackground(wrappedDrawable);
+        }else{
+            view.setBackgroundDrawable(wrappedDrawable);
+        }
     }
 }

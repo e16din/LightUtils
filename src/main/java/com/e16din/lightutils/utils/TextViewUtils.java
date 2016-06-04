@@ -7,7 +7,7 @@ import android.widget.TextView;
 /**
  * Created by e16din on 14.08.15.
  */
-public class TextViewUtils extends SdkUtils {
+public class TextViewUtils extends DeviceUtils {
 
     public static void updateHtml(TextView tv) {
         tv.setText(Html.fromHtml(tv.getText().toString()));

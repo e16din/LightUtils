@@ -7,6 +7,7 @@ import android.content.pm.ResolveInfo;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
+import android.os.Handler;
 import android.util.Log;
 
 import com.e16din.lightutils.LightUtils;
@@ -17,6 +18,12 @@ import java.util.List;
 public final class U extends TextViewUtils {
 
     private U() {
+    }
+
+    private static Handler handler = new Handler();
+
+    public static Handler getHandler() {
+        return handler;
     }
 
     public static void log(String text) {
@@ -62,13 +69,25 @@ public final class U extends TextViewUtils {
         return list.size() > 0;
     }
 
-    public static String getDeviceName() {
-        String manufacturer = Build.MANUFACTURER;
-        String model = Build.MODEL;
-        if (model.startsWith(manufacturer)) {
-            return model;
-        } else {
-            return manufacturer + " " + model;
-        }
+    public static boolean contains(int from, int to, int value) {
+        return value >= from && value <= to;
     }
+
+    public static boolean contains(float from, float to, float value) {
+        return value >= from && value <= to;
+    }
+
+    public static boolean allAbsValuesSmallerThan(List<Float> values, float thanX) {
+        boolean isClick = true;
+
+        for (float value : values) {
+            if (Math.abs(value) > thanX) {
+                isClick = false;
+                break;
+            }
+        }
+
+        return isClick;
+    }
+
 }
