@@ -9,10 +9,12 @@ import android.widget.TextView;
  */
 public class TextViewUtils extends DeviceUtils {
 
+    @Deprecated
     public static void updateHtml(TextView tv) {
         tv.setText(Html.fromHtml(tv.getText().toString()));
     }
 
+    @Deprecated
     public static void updateHtml(Activity activity, int tvId) {
         TextView tv = (TextView) activity.findViewById(tvId);
         if (tv != null)

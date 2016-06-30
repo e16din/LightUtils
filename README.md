@@ -1,6 +1,8 @@
 # LightUtils
 Light utils for more productivity
 
+[![Release](https://jitpack.io/v/e16din/LightUtils.svg)](https://jitpack.io/#e16din/LightUtils)
+
 ## Init
 ```java
 //Application onCreate
@@ -30,6 +32,6 @@ buildscript {
 }
 
 dependencies {
-    compile 'com.github.e16din:LightUtils:1.3.3'
+    compile 'com.github.e16din:LightUtils:1.+'
 }
 ```

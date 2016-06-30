@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.e16din.lightutils.LightUtils;
 
@@ -44,15 +45,20 @@ public final class U extends TextViewUtils {
     public static boolean isGpsEnabled() {
         final Context context = LightUtils.getInstance().getContext();
 
-        final LocationManager manager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        final LocationManager manager =
+                (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+
         return manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 
     public static boolean isOnline() {
         final Context context = LightUtils.getInstance().getContext();
 
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting();
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null
+                && cm.getActiveNetworkInfo().isConnectedOrConnecting();
     }
 
     public static boolean runIfOnline(boolean isOnline, Runnable callback) {
@@ -90,4 +96,16 @@ public final class U extends TextViewUtils {
         return isClick;
     }
 
+    public static boolean tryThis(Runnable runnable) {
+        try {
+            if (runnable != null) {
+                runnable.run();
+                return true;
+            }
+        } catch (NullPointerException | WindowManager.BadTokenException | IllegalStateException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }
