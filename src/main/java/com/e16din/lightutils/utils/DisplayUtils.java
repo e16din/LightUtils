@@ -51,6 +51,16 @@ public class DisplayUtils extends ColorUtils {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 
+    public static float pxToDpF(final float px) {
+        final Context context = LightUtils.getInstance().getContext();
+
+        return px / context.getResources().getDisplayMetrics().density;
+    }
+
+    private int pxToDp(final float px) {
+        return (int) pxToDpF(px);
+    }
+
     public static void setElevation(final View view, final int levelPx) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             view.setElevation(levelPx);
