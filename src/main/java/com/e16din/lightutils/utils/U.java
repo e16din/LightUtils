@@ -8,7 +8,6 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Handler;
-import android.util.Log;
 import android.view.WindowManager;
 
 import com.e16din.lightutils.LightUtils;
@@ -16,7 +15,7 @@ import com.e16din.lightutils.LightUtils;
 import java.util.List;
 
 
-public final class U extends TextViewUtils {
+public final class U extends LogUtils {
 
     private U() {
     }
@@ -25,10 +24,6 @@ public final class U extends TextViewUtils {
 
     public static Handler getHandler() {
         return handler;
-    }
-
-    public static void log(String text) {
-        Log.i("U.Log", text);
     }
 
     public static boolean isEmulator() {
