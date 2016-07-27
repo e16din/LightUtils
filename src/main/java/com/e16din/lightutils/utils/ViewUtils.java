@@ -44,54 +44,54 @@ public class ViewUtils extends SecureUtils {
 
 
     public static void showViews(View... views) {
-        swapVisibility(View.VISIBLE, views);
+        updateVisibility(View.VISIBLE, views);
     }
 
     public static void showViews(Activity activity, int... viewIds) {
-        swapVisibility(activity, View.VISIBLE, viewIds);
+        updateVisibility(activity, View.VISIBLE, viewIds);
     }
 
     public static void showViews(View view, int... viewIds) {
-        swapVisibility(view, View.VISIBLE, viewIds);
+        updateVisibility(view, View.VISIBLE, viewIds);
     }
 
     public static void hideViews(View... views) {
-        swapVisibility(View.INVISIBLE, views);
+        updateVisibility(View.INVISIBLE, views);
     }
 
     public static void hideViews(Activity activity, int... viewIds) {
-        swapVisibility(activity, View.INVISIBLE, viewIds);
+        updateVisibility(activity, View.INVISIBLE, viewIds);
     }
 
     public static void hideViews(View view, int... viewIds) {
-        swapVisibility(view, View.INVISIBLE, viewIds);
+        updateVisibility(view, View.INVISIBLE, viewIds);
     }
 
     public static void goneViews(View... views) {
-        swapVisibility(View.GONE, views);
+        updateVisibility(View.GONE, views);
     }
 
     public static void goneViews(Activity activity, int... viewIds) {
-        swapVisibility(activity, View.GONE, viewIds);
+        updateVisibility(activity, View.GONE, viewIds);
     }
 
     public static void goneViews(View view, int... viewIds) {
-        swapVisibility(view, View.GONE, viewIds);
+        updateVisibility(view, View.GONE, viewIds);
     }
 
-    public static void swapVisibility(int visibility, View... views) {
+    public static void updateVisibility(int visibility, View... views) {
         for (View v : views) {
             v.setVisibility(visibility);
         }
     }
 
-    public static void swapVisibility(Activity activity, int visibility, int... viewIds) {
+    public static void updateVisibility(Activity activity, int visibility, int... viewIds) {
         for (int id : viewIds) {
             activity.findViewById(id).setVisibility(visibility);
         }
     }
 
-    public static void swapVisibility(View view, int visibility, int... viewIds) {
+    public static void updateVisibility(View view, int visibility, int... viewIds) {
         for (int id : viewIds) {
             view.findViewById(id).setVisibility(visibility);
         }
