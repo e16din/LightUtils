@@ -111,4 +111,13 @@ public final class U extends TextViewUtils {
 
         return false;
     }
+
+    /**
+     * Function from Objects(api level 19) for compatibility with old versions
+     * <p/>
+     * Null-safe equivalent of {@code a.equals(b)}.
+     */
+    public static boolean equals(Object a, Object b) {
+        return (a == null) ? (b == null) : a.equals(b);
+    }
 }

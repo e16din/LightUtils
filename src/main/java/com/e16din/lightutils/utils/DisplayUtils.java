@@ -1,11 +1,13 @@
 package com.e16din.lightutils.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
@@ -67,9 +69,21 @@ public class DisplayUtils extends ColorUtils {
         }
     }
 
+    /**
+     * Method is deprecated please use getScreenSize method
+     */
+    @Deprecated
     public static Size getScreenRealSize(Display display) {
-        int realWidth = 0;
-        int realHeight = 0;
+        return getScreenSize(display);
+    }
+
+    public static Size getScreenSize(@NonNull Activity activity) {
+        return getScreenSize(activity.getWindowManager().getDefaultDisplay());
+    }
+
+    public static Size getScreenSize(@NonNull Display display) {
+        int realWidth;
+        int realHeight;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             //new pleasant way to get real metrics
@@ -99,6 +113,7 @@ public class DisplayUtils extends ColorUtils {
 
         return new Size(realWidth, realHeight);
     }
+
 
     public static Bitmap takeScreenshot(View view) {
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),
