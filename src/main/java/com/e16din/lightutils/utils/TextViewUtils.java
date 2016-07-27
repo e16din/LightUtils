@@ -1,6 +1,8 @@
 package com.e16din.lightutils.utils;
 
 import android.app.Activity;
+import android.text.Spannable;
+import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
 import com.e16din.lightutils.compat.HtmlCompat;
@@ -18,5 +20,25 @@ public class TextViewUtils extends DeviceUtils {
         TextView tv = (TextView) activity.findViewById(tvId);
         if (tv != null)
             tv.setText(HtmlCompat.fromHtml(tv.getText().toString()));
+    }
+
+    /**
+     * Sets the text with colored substring to your TextView
+     *
+     * @param vText     the TextView
+     * @param fulltext  original string
+     * @param substring substring for coloring
+     * @param color     color of substring
+     */
+    public static void setTextWithColoredSpan(TextView vText, String fulltext, String substring,
+                                              int color) {
+
+        vText.setText(fulltext, TextView.BufferType.SPANNABLE);
+        Spannable spannable = (Spannable) vText.getText();
+
+        int i = fulltext.indexOf(substring);
+
+        spannable.setSpan(new ForegroundColorSpan(color), i, i + substring.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 }
