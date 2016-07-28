@@ -36,6 +36,7 @@ public final class LightUtils {
         return context.getResources();
     }
 
+    @Deprecated
     public Locale getCurrentLocale() {
         return context.getResources().getConfiguration().locale;
     }

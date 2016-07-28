@@ -24,6 +24,14 @@ public final class Get {
         return tv == null ? 0 : tv.length();
     }
 
+    public static int size(TextView tv, boolean needTrim) {
+        return tv == null ? 0 : needTrim ? string(tv).trim().length() : tv.length();
+    }
+
+    public static int size(CharSequence str, boolean needTrim) {
+        return str == null ? 0 : needTrim ? str.toString().trim().length() : str.length();
+    }
+
     public static int size(List list) {
         return list == null ? 0 : list.size();
     }
