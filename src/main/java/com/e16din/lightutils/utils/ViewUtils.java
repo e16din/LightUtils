@@ -1,10 +1,12 @@
 package com.e16din.lightutils.utils;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.TypedValue;
 import android.view.View;
@@ -26,12 +28,42 @@ public class ViewUtils extends SecureUtils {
         hideView(a.findViewById(resId));
     }
 
+    public static void hideView(Fragment f, int resId) {
+        final View view = f.getView();
+        if (view != null) {
+            hideView(view.findViewById(resId));
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void hideView(android.app.Fragment f, int resId) {
+        final View view = f.getView();
+        if (view != null) {
+            hideView(view.findViewById(resId));
+        }
+    }
+
     public static void goneView(View v) {
         v.setVisibility(View.GONE);
     }
 
     public static void goneView(Activity a, int resId) {
         goneView(a.findViewById(resId));
+    }
+
+    public static void goneView(Fragment f, int resId) {
+        final View view = f.getView();
+        if (view != null) {
+            goneView(view.findViewById(resId));
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void goneView(android.app.Fragment f, int resId) {
+        final View view = f.getView();
+        if (view != null) {
+            goneView(view.findViewById(resId));
+        }
     }
 
     public static void showView(View v) {
@@ -42,6 +74,20 @@ public class ViewUtils extends SecureUtils {
         showView(a.findViewById(resId));
     }
 
+    public static void showView(Fragment f, int resId) {
+        final View view = f.getView();
+        if (view != null) {
+            showView(view.findViewById(resId));
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void showView(android.app.Fragment f, int resId) {
+        final View view = f.getView();
+        if (view != null) {
+            showView(view.findViewById(resId));
+        }
+    }
 
     public static void showViews(View... views) {
         updateVisibility(View.VISIBLE, views);
@@ -92,6 +138,25 @@ public class ViewUtils extends SecureUtils {
     }
 
     public static void updateVisibility(View view, int visibility, int... viewIds) {
+        for (int id : viewIds) {
+            view.findViewById(id).setVisibility(visibility);
+        }
+    }
+
+    public static void updateVisibility(Fragment f, int visibility, int... viewIds) {
+        final View view = f.getView();
+        if (view == null) return;
+
+        for (int id : viewIds) {
+            view.findViewById(id).setVisibility(visibility);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void updateVisibility(android.app.Fragment f, int visibility, int... viewIds) {
+        final View view = f.getView();
+        if (view == null) return;
+
         for (int id : viewIds) {
             view.findViewById(id).setVisibility(visibility);
         }
@@ -164,6 +229,23 @@ public class ViewUtils extends SecureUtils {
     public static View setOnClickListener(View v, View.OnClickListener onClickListener) {
         v.setOnClickListener(onClickListener);
         return v;
+    }
+
+    public static void setOnClickListener(Fragment f, int viewId,
+                                          View.OnClickListener onClickListener) {
+        final View view = f.getView();
+        if (view == null) return;
+
+        setOnClickListener(view.findViewById(viewId), onClickListener);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void setOnClickListener(android.app.Fragment f, int viewId,
+                                          View.OnClickListener onClickListener) {
+        final View view = f.getView();
+        if (view == null) return;
+
+        setOnClickListener(view.findViewById(viewId), onClickListener);
     }
 
     public static void updateTint(View view, @ColorInt int color) {
