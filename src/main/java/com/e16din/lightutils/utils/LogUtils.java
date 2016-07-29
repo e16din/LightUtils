@@ -14,8 +14,8 @@ public class LogUtils extends TextViewUtils {
     public static final int DEFAULT_INDENT_SPACES = 4;
 
 
-    public static void log(String text) {
-        logJsonI("U.Log", text);
+    public static void log(Object object) {
+        logJsonI("U.Log", object + "");
     }
 
     public static void logJsonD(String message) {

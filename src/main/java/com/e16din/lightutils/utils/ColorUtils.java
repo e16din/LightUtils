@@ -9,7 +9,7 @@ public class ColorUtils extends MathUtils {
         int c = (int) Long.parseLong(color + "", 16);
         String r = ((c >> 16) & 0xFF) + "";
         String g = ((c >> 8) & 0xFF) + "";
-        String b = ((c >> 0) & 0xFF) + "";
+        String b = ((c) & 0xFF) + "";
 
         return r + g + b;
     }

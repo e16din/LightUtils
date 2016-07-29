@@ -2,6 +2,7 @@ package com.e16din.lightutils;
 
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -46,7 +47,7 @@ public final class Get {
             return "Size: " + size(list) + ", " + list;
         } else if (obj instanceof Object[]) {
             final Object[] array = (Object[]) obj;
-            return "Size: " + size(array) + ", " + array;
+            return "Size: " + size(array) + ", " + Arrays.toString(array);
         }
 
         return obj + "";

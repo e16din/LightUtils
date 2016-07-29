@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.animation.Animation;
@@ -85,10 +86,18 @@ public class AnimationWrapper {
         final Rect rectInt = new Rect();
         rect.round(rectInt);
 
-        if (isImageView)
+        if (isImageView) {
             ((ImageView) view).setImageBitmap(output);
-        else
-            view.setBackgroundDrawable(new BitmapDrawable(output));
+        } else {
+            final BitmapDrawable backgroundDrawable =
+                    new BitmapDrawable(view.getResources(), output);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                view.setBackground(backgroundDrawable);
+            } else {
+                view.setBackgroundDrawable(backgroundDrawable);
+            }
+        }
 
         Animation a = new Animation() {
             @Override

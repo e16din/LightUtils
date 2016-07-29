@@ -20,10 +20,11 @@ import java.io.InputStream;
  */
 public class BitmapUtils extends DisplayUtils {
 
-    public static Bitmap getThumbnail(Uri uri) throws IOException {
+    public static Bitmap getThumbnail(Uri uri) throws IOException, NullPointerException {
         final Context context = LightUtils.getInstance().getContext();
 
         InputStream input = context.getContentResolver().openInputStream(uri);
+        assert input != null;
 
         BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
         onlyBoundsOptions.inJustDecodeBounds = true;
@@ -31,8 +32,9 @@ public class BitmapUtils extends DisplayUtils {
         onlyBoundsOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;// optional
         BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
         input.close();
-        if ((onlyBoundsOptions.outWidth == -1) || (onlyBoundsOptions.outHeight == -1))
+        if ((onlyBoundsOptions.outWidth == -1) || (onlyBoundsOptions.outHeight == -1)) {
             return null;
+        }
 
         int originalSize = (onlyBoundsOptions.outHeight > onlyBoundsOptions.outWidth) ? onlyBoundsOptions.outHeight
                 : onlyBoundsOptions.outWidth;
@@ -44,7 +46,10 @@ public class BitmapUtils extends DisplayUtils {
         bitmapOptions.inSampleSize = getPowerOfTwoForSampleRatio(ratio);
         bitmapOptions.inDither = true;// optional
         bitmapOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;// optional
+
         input = context.getContentResolver().openInputStream(uri);
+        assert input != null;
+
         Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
         input.close();
         return bitmap;

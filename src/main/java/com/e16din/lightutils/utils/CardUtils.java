@@ -18,7 +18,7 @@ public class CardUtils extends MapUtils {
         int checksum = 0;
 
         for (int i = s1.length - 1; i >= 0; i -= 2) {
-            int k = 0;
+            int k;
 
             if (i > 0) {
                 k = Integer.valueOf(s1[i - 1]) * 2;
