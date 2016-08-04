@@ -11,4 +11,9 @@ public class InvisibleUtils {
     //        int result = googleAPI.isGooglePlayServicesAvailable(context);
     //        return result == ConnectionResult.SUCCESS;
     //    }
+
+//    @NonNull
+//    public static String getVersionStr() {
+//        return "v" + BuildConfig.VERSION_NAME + "(" + BuildConfig.VERSION_CODE + ")";
+//    }
 }

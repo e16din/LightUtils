@@ -52,4 +52,5 @@ public class DeviceUtils extends IdUtils {
     public static String getAndroidVersionNumbers() {
         return Build.VERSION.RELEASE;
     }
+
 }

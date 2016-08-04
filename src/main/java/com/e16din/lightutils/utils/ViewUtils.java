@@ -12,8 +12,10 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.TextView;
 
 import com.e16din.lightutils.LightUtils;
+import com.e16din.lightutils.tools.SimpleTextWatcher;
 
 /**
  * Created by e16din on 02.09.15.
@@ -331,6 +333,15 @@ public class ViewUtils extends SecureUtils {
         } else {//if !ViewGroup
             callback.onChild(view, null, deep);
         }
+    }
+
+    public static void bindEnableState(@NonNull final View view, @NonNull TextView vText) {
+        vText.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                view.setEnabled(s.length() > 0);
+            }
+        });
     }
 
     public interface LoopChildrenCallback {
