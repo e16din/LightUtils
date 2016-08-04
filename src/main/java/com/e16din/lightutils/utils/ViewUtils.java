@@ -335,13 +335,32 @@ public class ViewUtils extends SecureUtils {
         }
     }
 
-    public static void bindEnableState(@NonNull final View view, @NonNull TextView vText) {
-        vText.addTextChangedListener(new SimpleTextWatcher() {
+    public static void bindEnableState(@NonNull final View view, @NonNull TextView... vFields) {
+        final SimpleTextWatcher watcher = new SimpleTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 view.setEnabled(s.length() > 0);
             }
-        });
+        };
+
+        for (TextView vText : vFields) {
+            vText.addTextChangedListener(watcher);
+        }
+    }
+
+    public static void bindEnableState(@NonNull final View[] views, @NonNull TextView... vFields) {
+        final SimpleTextWatcher watcher = new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                for (View v : views) {
+                    v.setEnabled(s.length() > 0);
+                }
+            }
+        };
+
+        for (TextView vText : vFields) {
+            vText.addTextChangedListener(watcher);
+        }
     }
 
     public interface LoopChildrenCallback {
