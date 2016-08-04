@@ -336,10 +336,14 @@ public class ViewUtils extends SecureUtils {
     }
 
     public static void bindEnableState(@NonNull final View view, @NonNull TextView... vFields) {
+        bindEnableState(view, 0, vFields);
+    }
+
+    public static void bindEnableState(@NonNull final View view, final int minLength, @NonNull TextView... vFields) {
         final SimpleTextWatcher watcher = new SimpleTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                view.setEnabled(s.length() > 0);
+                view.setEnabled(s.length() > minLength);
             }
         };
 
@@ -349,11 +353,15 @@ public class ViewUtils extends SecureUtils {
     }
 
     public static void bindEnableState(@NonNull final View[] views, @NonNull TextView... vFields) {
+        bindEnableState(views, 0, vFields);
+    }
+
+    public static void bindEnableState(@NonNull final View[] views, final int minLength, @NonNull TextView... vFields) {
         final SimpleTextWatcher watcher = new SimpleTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 for (View v : views) {
-                    v.setEnabled(s.length() > 0);
+                    v.setEnabled(s.length() > minLength);
                 }
             }
         };
