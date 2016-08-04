@@ -310,4 +310,30 @@ public class ViewUtils extends SecureUtils {
             }
         });
     }
+
+    public void recursiveLoopChildren(View view, @NonNull LoopChildrenCallback callback) {
+        recursiveLoopChildren(view, callback, 0);
+    }
+
+    public void recursiveLoopChildren(View view, @NonNull LoopChildrenCallback callback, int deep) {
+        if (view == null) return;
+
+        deep += 1;
+
+        if (view instanceof ViewGroup) {
+            callback.onChild(null, (ViewGroup) view, deep);
+
+            for (int i = ((ViewGroup) view).getChildCount() - 1; i >= 0; i--) {
+                final View vChild = ((ViewGroup) view).getChildAt(i);
+
+                recursiveLoopChildren(vChild, callback);
+            }
+        } else {//if !ViewGroup
+            callback.onChild(view, null, deep);
+        }
+    }
+
+    public interface LoopChildrenCallback {
+        void onChild(View view, ViewGroup viewGroup, int deep);
+    }
 }

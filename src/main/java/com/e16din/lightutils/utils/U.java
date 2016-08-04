@@ -17,7 +17,7 @@ import com.e16din.lightutils.LightUtils;
 import java.util.List;
 
 
-public final class U extends TextViewUtils {
+public final class U extends LogUtils {
 
     public static final int WRONG_VALUE = -100500;
 
