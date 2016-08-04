@@ -339,11 +339,13 @@ public class ViewUtils extends SecureUtils {
         bindEnableState(view, 0, vFields);
     }
 
-    public static void bindEnableState(@NonNull final View view, final int minLength, @NonNull TextView... vFields) {
+    public static void bindEnableState(@NonNull final View view, final int maxInvalidLength, @NonNull final TextView... vFields) {
         final SimpleTextWatcher watcher = new SimpleTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                view.setEnabled(s.length() > minLength);
+                boolean hasInvalidValue = hasInvalidLength(vFields, maxInvalidLength);
+
+                view.setEnabled(!hasInvalidValue);
             }
         };
 
@@ -356,12 +358,14 @@ public class ViewUtils extends SecureUtils {
         bindEnableState(views, 0, vFields);
     }
 
-    public static void bindEnableState(@NonNull final View[] views, final int minLength, @NonNull TextView... vFields) {
+    public static void bindEnableState(@NonNull final View[] views, final int maxInvalidLength, @NonNull final TextView... vFields) {
         final SimpleTextWatcher watcher = new SimpleTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                boolean hasInvalidValue = hasInvalidLength(vFields, maxInvalidLength);
+
                 for (View v : views) {
-                    v.setEnabled(s.length() > minLength);
+                    v.setEnabled(!hasInvalidValue);
                 }
             }
         };
@@ -369,6 +373,18 @@ public class ViewUtils extends SecureUtils {
         for (TextView vText : vFields) {
             vText.addTextChangedListener(watcher);
         }
+    }
+
+
+    public static boolean hasInvalidLength(@NonNull TextView[] vFields, int maxInvalidLength) {
+        boolean hasInvalidValue = false;
+        for (TextView vText : vFields) {
+            if (vText.length() <= maxInvalidLength) {
+                hasInvalidValue = true;
+                break;
+            }
+        }
+        return hasInvalidValue;
     }
 
     public interface LoopChildrenCallback {
