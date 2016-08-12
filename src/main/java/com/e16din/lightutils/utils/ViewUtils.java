@@ -313,22 +313,21 @@ public class ViewUtils extends SecureUtils {
         });
     }
 
-    public void recursiveLoopChildren(View view, @NonNull LoopChildrenCallback callback) {
+    public static void recursiveLoopChildren(View view, @NonNull LoopChildrenCallback callback) {
         recursiveLoopChildren(view, callback, 0);
     }
 
-    public void recursiveLoopChildren(View view, @NonNull LoopChildrenCallback callback, int deep) {
+    public static void recursiveLoopChildren(View view, @NonNull LoopChildrenCallback callback, int deep) {
         if (view == null) return;
 
         deep += 1;
 
         if (view instanceof ViewGroup) {
-            callback.onChild(null, (ViewGroup) view, deep);
+            final ViewGroup viewGroup = (ViewGroup) view;
+            callback.onChild(null, viewGroup, deep);
 
-            for (int i = ((ViewGroup) view).getChildCount() - 1; i >= 0; i--) {
-                final View vChild = ((ViewGroup) view).getChildAt(i);
-
-                recursiveLoopChildren(vChild, callback);
+            for (int i = viewGroup.getChildCount() - 1; i >= 0; i--) {
+                recursiveLoopChildren(viewGroup.getChildAt(i), callback);
             }
         } else {//if !ViewGroup
             callback.onChild(view, null, deep);
