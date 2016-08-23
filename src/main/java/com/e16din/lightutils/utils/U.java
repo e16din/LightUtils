@@ -1,5 +1,7 @@
 package com.e16din.lightutils.utils;
 
+import com.e16din.lightutils.LightUtils;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -11,8 +13,6 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Handler;
 import android.view.WindowManager;
-
-import com.e16din.lightutils.LightUtils;
 
 import java.util.List;
 
@@ -111,6 +111,18 @@ public final class U extends ResourcesUtils {
         }
 
         return false;
+    }
+
+    public static void startTimer(final Long interval, final int count, final Runnable onTick) {
+        U.getHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                onTick.run();
+                if (count - 1 > 0) {
+                    startTimer(interval, count - 1, onTick);
+                }
+            }
+        }, interval);
     }
 
     /**
