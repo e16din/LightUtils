@@ -1,7 +1,5 @@
 package com.e16din.lightutils.utils;
 
-import com.e16din.lightutils.LightUtils;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -13,6 +11,9 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Handler;
 import android.view.WindowManager;
+import android.webkit.CookieManager;
+
+import com.e16din.lightutils.LightUtils;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public final class U extends ResourcesUtils {
                 || Build.MODEL.contains("Android SDK built for x86")
                 || Build.MANUFACTURER.contains("Genymotion")
                 || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"))
-                || "google_sdk".equals(Build.PRODUCT);
+                || "google_sdk" .equals(Build.PRODUCT);
     }
 
     public static boolean isGpsEnabled() {
@@ -123,6 +124,16 @@ public final class U extends ResourcesUtils {
                 }
             }
         }, interval);
+    }
+
+    public static void clearCookie() {
+        CookieManager cookieManager = CookieManager.getInstance();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            cookieManager.removeAllCookies(null);
+        } else {
+            cookieManager.removeAllCookie();
+        }
     }
 
     /**
