@@ -128,6 +128,11 @@ public final class U extends ResourcesUtils {
         U.getHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (mBreakAllTickers) {
+                    mBreakAllTickers = false;
+                    return;
+                }
+
                 onTick.run();
 
                 if (!onTick.isCanceled() && count - 1 > 0) {
