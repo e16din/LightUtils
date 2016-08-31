@@ -17,6 +17,7 @@ import android.webkit.CookieManager;
 import com.e16din.lightutils.LightUtils;
 import com.e16din.lightutils.tools.AgileRunnable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,8 +26,7 @@ public final class U extends ResourcesUtils {
 
     public static final int WRONG_VALUE = -100500;
 
-    private static boolean mBreakAllTickers;
-
+    private static List<AgileRunnable> mTickers;
 
     private U() {
     }
@@ -120,19 +120,15 @@ public final class U extends ResourcesUtils {
     }
 
     public static void startTicker(final Long interval, final int count, final AgileRunnable onTick) {
-        if (mBreakAllTickers) {
-            mBreakAllTickers = false;
-            return;
+        if (mTickers == null) {
+            mTickers = new ArrayList<>();
         }
+        mTickers.add(onTick);
+
 
         U.getHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (mBreakAllTickers) {
-                    mBreakAllTickers = false;
-                    return;
-                }
-
                 onTick.run();
 
                 if (!onTick.isCanceled() && count - 1 > 0) {
@@ -143,7 +139,13 @@ public final class U extends ResourcesUtils {
     }
 
     public static void breakAllTickers() {
-        mBreakAllTickers = true;
+        if (mTickers == null) return;
+
+        for (AgileRunnable r : mTickers) {
+            r.cancel();
+        }
+
+        mTickers.clear();
     }
 
     public static void clearCookie() {
