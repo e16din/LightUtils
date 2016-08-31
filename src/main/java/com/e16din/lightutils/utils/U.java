@@ -10,17 +10,22 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Handler;
+import android.util.SparseArray;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
 
 import com.e16din.lightutils.LightUtils;
+import com.e16din.lightutils.tools.AgileRunnable;
 
 import java.util.List;
 
 
+@SuppressWarnings("unused")
 public final class U extends ResourcesUtils {
 
     public static final int WRONG_VALUE = -100500;
+
+    private static boolean mBreakAllTickers;
 
 
     private U() {
@@ -44,7 +49,7 @@ public final class U extends ResourcesUtils {
                 || Build.MODEL.contains("Android SDK built for x86")
                 || Build.MANUFACTURER.contains("Genymotion")
                 || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"))
-                || "google_sdk" .equals(Build.PRODUCT);
+                || "google_sdk".equals(Build.PRODUCT);
     }
 
     public static boolean isGpsEnabled() {
@@ -114,16 +119,26 @@ public final class U extends ResourcesUtils {
         return false;
     }
 
-    public static void startTimer(final Long interval, final int count, final Runnable onTick) {
+    public static void startTicker(final Long interval, final int count, final AgileRunnable onTick) {
+        if (mBreakAllTickers) {
+            mBreakAllTickers = false;
+            return;
+        }
+
         U.getHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 onTick.run();
-                if (count - 1 > 0) {
-                    startTimer(interval, count - 1, onTick);
+
+                if (!onTick.isCanceled() && count - 1 > 0) {
+                    startTicker(interval, count - 1, onTick);
                 }
             }
         }, interval);
+    }
+
+    public static void breakAllTickers() {
+        mBreakAllTickers = true;
     }
 
     public static void clearCookie() {
@@ -133,6 +148,12 @@ public final class U extends ResourcesUtils {
             cookieManager.removeAllCookies(null);
         } else {
             cookieManager.removeAllCookie();
+        }
+    }
+
+    public static <T> void forEach(SparseArray<T> array, SparseForEachCallback<T> callback) {
+        for (int i = 0; i < array.size(); i++) {
+            callback.onValue(array.valueAt(i), i, array.keyAt(i));
         }
     }
 
@@ -160,5 +181,9 @@ public final class U extends ResourcesUtils {
             return scanForActivity(((ContextWrapper) context).getBaseContext());
 
         return null;
+    }
+
+    public interface SparseForEachCallback<T> {
+        void onValue(T value, int position, int key);
     }
 }

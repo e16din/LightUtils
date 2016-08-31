@@ -2,6 +2,7 @@ package com.e16din.lightutils.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
@@ -9,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -17,10 +19,14 @@ import android.widget.TextView;
 import com.e16din.lightutils.LightUtils;
 import com.e16din.lightutils.tools.SimpleTextWatcher;
 
+import java.util.List;
+
 /**
  * Created by e16din on 02.09.15.
  */
 public class ViewUtils extends SecureUtils {
+
+    public static final int INVALID_VALUE = -1;
 
     public static void hideView(View v) {
         v.setVisibility(View.INVISIBLE);
@@ -384,6 +390,36 @@ public class ViewUtils extends SecureUtils {
             }
         }
         return hasInvalidValue;
+    }
+
+    public int getClickedViewId(@NonNull int[] viewsArray, ViewGroup view, MotionEvent e) {
+        for (int viewId : viewsArray) {
+            if (isViewClicked(viewId, view, e)) {
+                return viewId;
+            }
+        }
+
+        return INVALID_VALUE;
+    }
+
+    public int getClickedViewId(@NonNull List<Integer> viewsList, ViewGroup view, MotionEvent e) {
+        for (int viewId : viewsList) {
+            if (isViewClicked(viewId, view, e)) {
+                return viewId;
+            }
+        }
+
+        return INVALID_VALUE;
+    }
+
+    public boolean isViewClicked(int viewId, ViewGroup vParent, MotionEvent e) {
+        Rect rect = new Rect();
+        int x = (int) e.getRawX();
+        int y = (int) e.getRawY();
+
+        vParent.findViewById(viewId).getGlobalVisibleRect(rect);
+
+        return rect.contains(x, y);
     }
 
     public interface LoopChildrenCallback {
