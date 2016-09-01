@@ -12,7 +12,8 @@ import java.util.Locale;
  */
 public final class LightUtils {
 
-    private Context context;
+    private Context mContext;
+    private boolean mDebug;
 
     private LightUtils() {
     }
@@ -25,27 +26,49 @@ public final class LightUtils {
         return Holder.HOLDER_INSTANCE;
     }
 
+    /**
+     * Initialize LightUtils and JodaTimeAndroid
+     *
+     * @param context Application context
+     * @param debug   BuildConfig.DEBUG
+     */
+    public static void init(final Context context, boolean debug) {
+        if (Holder.HOLDER_INSTANCE.mContext == null) {
+            Holder.HOLDER_INSTANCE.mContext = context.getApplicationContext();
+            JodaTimeAndroid.init(Holder.HOLDER_INSTANCE.mContext);
+            Holder.HOLDER_INSTANCE.mDebug = debug;
+        }
+    }
+
+    /**
+     * @deprecated Use init(final Context mContext, boolean debug)
+     */
+    @Deprecated
     public static void init(final Context context) {
-        if (Holder.HOLDER_INSTANCE.context == null) {
-            Holder.HOLDER_INSTANCE.context = context.getApplicationContext();
-            JodaTimeAndroid.init(Holder.HOLDER_INSTANCE.context);
+        if (Holder.HOLDER_INSTANCE.mContext == null) {
+            Holder.HOLDER_INSTANCE.mContext = context.getApplicationContext();
+            JodaTimeAndroid.init(Holder.HOLDER_INSTANCE.mContext);
         }
     }
 
     public Resources getResources() {
-        return context.getResources();
+        return mContext.getResources();
     }
 
     @Deprecated
     public Locale getCurrentLocale() {
-        return context.getResources().getConfiguration().locale;
+        return mContext.getResources().getConfiguration().locale;
+    }
+
+    public boolean isDebug() {
+        return mDebug;
     }
 
     public Context getContext() {
-        return context;
+        return mContext;
     }
 
     public void setContext(Context context) {
-        this.context = context;
+        this.mContext = context;
     }
 }

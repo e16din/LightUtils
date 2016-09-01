@@ -2,6 +2,8 @@ package com.e16din.lightutils.utils;
 
 import android.util.Log;
 
+import com.e16din.lightutils.LightUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +34,8 @@ public class LogUtils extends TextViewUtils {
 
 
     public static void logJsonD(String tag, String message, int indentSpaces) {
+        if (!LightUtils.getInstance().isDebug()) return;
+
         if (message.startsWith("{")) {
             JSONObject jsonObject;
             try {
@@ -81,6 +85,8 @@ public class LogUtils extends TextViewUtils {
     }
 
     public static void logJsonI(String tag, String message, int indentSpaces) {
+        if (!LightUtils.getInstance().isDebug()) return;
+
         if (message.startsWith("{")) {
             JSONObject jsonObject;
             try {
@@ -130,6 +136,8 @@ public class LogUtils extends TextViewUtils {
     }
 
     public static void logJsonE(String tag, String message, int indentSpaces) {
+        if (!LightUtils.getInstance().isDebug()) return;
+
         if (message.startsWith("{")) {
             JSONObject jsonObject;
             try {
@@ -168,6 +176,8 @@ public class LogUtils extends TextViewUtils {
 
 
     public static void logLongI(String tag, String str) {
+        if (!LightUtils.getInstance().isDebug()) return;
+
         if (str.length() > LOG_PART_SIZE) {
             Log.i(tag, str.substring(0, LOG_PART_SIZE));
             logLongI(tag, str.substring(LOG_PART_SIZE));
@@ -177,6 +187,8 @@ public class LogUtils extends TextViewUtils {
     }
 
     public static void logLongD(String tag, String str) {
+        if (!LightUtils.getInstance().isDebug()) return;
+
         if (str.length() > LOG_PART_SIZE) {
             Log.d(tag, str.substring(0, LOG_PART_SIZE));
             logLongD(tag, str.substring(LOG_PART_SIZE));
@@ -186,6 +198,8 @@ public class LogUtils extends TextViewUtils {
     }
 
     public static void logLongE(String tag, String str) {
+        if (!LightUtils.getInstance().isDebug()) return;
+
         if (str.length() > LOG_PART_SIZE) {
             Log.e(tag, str.substring(0, LOG_PART_SIZE));
             logLongE(tag, str.substring(LOG_PART_SIZE));
@@ -195,6 +209,8 @@ public class LogUtils extends TextViewUtils {
     }
 
     public static void logLongW(String tag, String str) {
+        if (!LightUtils.getInstance().isDebug()) return;
+
         if (str.length() > LOG_PART_SIZE) {
             Log.w(tag, str.substring(0, LOG_PART_SIZE));
             logLongW(tag, str.substring(LOG_PART_SIZE));
@@ -204,6 +220,8 @@ public class LogUtils extends TextViewUtils {
     }
 
     public static void logLongV(String tag, String str) {
+        if (!LightUtils.getInstance().isDebug()) return;
+
         if (str.length() > LOG_PART_SIZE) {
             Log.v(tag, str.substring(0, LOG_PART_SIZE));
             logLongV(tag, str.substring(LOG_PART_SIZE));
