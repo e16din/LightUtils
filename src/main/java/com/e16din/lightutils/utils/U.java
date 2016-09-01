@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.IntRange;
 import android.util.SparseArray;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
@@ -119,7 +120,11 @@ public final class U extends ResourcesUtils {
         return false;
     }
 
-    public static void startTicker(final Long interval, final int count, final AgileRunnable onTick) {
+    public static void startTicker(@IntRange(from = 1, to = Integer.MAX_VALUE) final Long interval,
+                                   @IntRange(from = 0, to = Integer.MAX_VALUE) final int count,
+                                   final AgileRunnable onTick) {
+        if (count <= 0 || interval < 1) return;
+
         if (mTickers == null) {
             mTickers = new ArrayList<>();
         }
