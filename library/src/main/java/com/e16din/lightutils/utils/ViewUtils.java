@@ -51,85 +51,89 @@ public class ViewUtils extends SecureUtils {
         }
     }
 
-    public static void goneView(View v) {
+    public static void gone(View v) {
         v.setVisibility(View.GONE);
     }
 
-    public static void goneView(Activity a, int resId) {
-        goneView(a.findViewById(resId));
+    public static void gone(Activity a, int resId) {
+        gone(a.findViewById(resId));
     }
 
-    public static void goneView(Fragment f, int resId) {
+    public static void gone(Fragment f, int resId) {
         final View view = f.getView();
         if (view != null) {
-            goneView(view.findViewById(resId));
+            gone(view.findViewById(resId));
         }
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static void goneView(android.app.Fragment f, int resId) {
+    public static void gone(android.app.Fragment f, int resId) {
         final View view = f.getView();
         if (view != null) {
-            goneView(view.findViewById(resId));
+            gone(view.findViewById(resId));
         }
     }
 
-    public static void showView(View v) {
+    public static void show(View v) {
         v.setVisibility(View.VISIBLE);
     }
 
-    public static void showView(Activity a, int resId) {
-        showView(a.findViewById(resId));
+    public static void show(Activity a, int resId) {
+        show(a.findViewById(resId));
     }
 
-    public static void showView(Fragment f, int resId) {
+    public static void show(Fragment f, int resId) {
         final View view = f.getView();
         if (view != null) {
-            showView(view.findViewById(resId));
+            show(view.findViewById(resId));
         }
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static void showView(android.app.Fragment f, int resId) {
+    public static void show(android.app.Fragment f, int resId) {
         final View view = f.getView();
         if (view != null) {
-            showView(view.findViewById(resId));
+            show(view.findViewById(resId));
         }
     }
 
-    public static void showViews(View... views) {
+    public static void show(View... views) {
         updateVisibility(View.VISIBLE, views);
     }
 
-    public static void showViews(Activity activity, int... viewIds) {
+    public static void show(Activity activity, int... viewIds) {
         updateVisibility(activity, View.VISIBLE, viewIds);
     }
 
-    public static void showViews(View view, int... viewIds) {
+    public static void show(View view, int... viewIds) {
         updateVisibility(view, View.VISIBLE, viewIds);
     }
 
-    public static void hideViews(View... views) {
+    public static void hide(View... views) {
         updateVisibility(View.INVISIBLE, views);
     }
 
-    public static void hideViews(Activity activity, int... viewIds) {
+    public static void hide(Activity activity, int... viewIds) {
         updateVisibility(activity, View.INVISIBLE, viewIds);
     }
 
-    public static void hideViews(View view, int... viewIds) {
+    public static void hide(View view, int... viewIds) {
         updateVisibility(view, View.INVISIBLE, viewIds);
     }
 
-    public static void goneViews(View... views) {
+    public static void hide(View view) {
+        updateVisibility(view, View.INVISIBLE);
+    }
+
+    public static void gone(View... views) {
         updateVisibility(View.GONE, views);
     }
 
-    public static void goneViews(Activity activity, int... viewIds) {
+    public static void gone(Activity activity, int... viewIds) {
         updateVisibility(activity, View.GONE, viewIds);
     }
 
-    public static void goneViews(View view, int... viewIds) {
+    public static void gone(View view, int... viewIds) {
         updateVisibility(view, View.GONE, viewIds);
     }
 
@@ -187,6 +191,18 @@ public class ViewUtils extends SecureUtils {
      */
     public static void swapVisibility(View v, boolean condition) {
         v.setVisibility(condition ? View.VISIBLE : View.INVISIBLE);
+    }
+
+    public static void gone(View v, boolean condition) {
+        if (condition) gone(v);
+    }
+
+    public static void show(View v, boolean condition) {
+        if (condition) show(v);
+    }
+
+    public static void hide(View v, boolean condition) {
+        if (condition) hide(v);
     }
 
     public static void swapVisibleInvisible(View v) {
