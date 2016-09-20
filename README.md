@@ -32,8 +32,9 @@ U.logJsonI(TAG, jsonString);//log long formated json
 @Override
 public void onCreate() {
     super.onCreate();
-
-    LightUtils.init(this);//set application context
+    
+    //set application context
+    LightUtils.init(this, BuildConfig.DEBUG);
 }
 ```
 
