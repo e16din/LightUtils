@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
 import android.util.SparseArray;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
@@ -108,11 +109,18 @@ public final class U extends ResourcesUtils {
     }
 
     public static boolean tryThis(Runnable runnable) {
+        return tryThis(runnable, true);
+    }
+
+    public static boolean tryThis(@NonNull Runnable runnable, boolean needIgnore) {
+        if (!needIgnore) {
+            runnable.run();
+            return true;
+        }
+
         try {
-            if (runnable != null) {
-                runnable.run();
-                return true;
-            }
+            runnable.run();
+            return true;
         } catch (NullPointerException | WindowManager.BadTokenException | IllegalStateException e) {
             e.printStackTrace();
         }
