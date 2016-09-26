@@ -408,7 +408,7 @@ public class ViewUtils extends SecureUtils {
         return hasInvalidValue;
     }
 
-    public int getClickedViewId(@NonNull int[] viewsArray, ViewGroup view, MotionEvent e) {
+    public static int getClickedViewId(@NonNull int[] viewsArray, ViewGroup view, MotionEvent e) {
         for (int viewId : viewsArray) {
             if (isViewClicked(viewId, view, e)) {
                 return viewId;
@@ -418,7 +418,7 @@ public class ViewUtils extends SecureUtils {
         return INVALID_VALUE;
     }
 
-    public int getClickedViewId(@NonNull List<Integer> viewsList, ViewGroup view, MotionEvent e) {
+    public static int getClickedViewId(@NonNull List<Integer> viewsList, ViewGroup view, MotionEvent e) {
         for (int viewId : viewsList) {
             if (isViewClicked(viewId, view, e)) {
                 return viewId;
@@ -428,7 +428,7 @@ public class ViewUtils extends SecureUtils {
         return INVALID_VALUE;
     }
 
-    public boolean isViewClicked(int viewId, ViewGroup vParent, MotionEvent e) {
+    public static boolean isViewClicked(int viewId, ViewGroup vParent, MotionEvent e) {
         Rect rect = new Rect();
         int x = (int) e.getRawX();
         int y = (int) e.getRawY();
@@ -437,6 +437,23 @@ public class ViewUtils extends SecureUtils {
 
         return rect.contains(x, y);
     }
+
+    public static void setPaddingTop(View v, int padding) {
+        v.setPadding(v.getPaddingLeft(), padding, v.getPaddingRight(), v.getPaddingBottom());
+    }
+
+    public static void setPaddingBottom(View v, int padding) {
+        v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), padding);
+    }
+
+    public static void setPaddingLeft(View v, int padding) {
+        v.setPadding(padding, v.getPaddingTop(), v.getPaddingRight(), v.getPaddingBottom());
+    }
+
+    public static void setPaddingRight(View v, int padding) {
+        v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), padding, v.getPaddingBottom());
+    }
+
 
     public interface LoopChildrenCallback {
         void onChild(View view, ViewGroup viewGroup, int deep);
