@@ -122,7 +122,7 @@ public class ViewUtils extends SecureUtils {
     }
 
     public static void hide(View view) {
-        updateVisibility(view, View.INVISIBLE);
+        view.setVisibility(View.INVISIBLE);
     }
 
     public static void gone(View... views) {
@@ -153,6 +153,10 @@ public class ViewUtils extends SecureUtils {
         for (int id : viewIds) {
             view.findViewById(id).setVisibility(visibility);
         }
+    }
+
+    public static void updateVisibility(View view, int visibility) {
+        view.setVisibility(visibility);
     }
 
     public static void updateVisibility(Fragment f, int visibility, int... viewIds) {
