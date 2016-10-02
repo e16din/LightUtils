@@ -1,5 +1,7 @@
 package com.e16din.lightutils.utils;
 
+import android.content.res.ColorStateList;
+
 /**
  * Created by e16din on 14.08.15.
  */
@@ -12,5 +14,24 @@ public class ColorUtils extends MathUtils {
         String b = ((c) & 0xFF) + "";
 
         return r + g + b;
+    }
+
+    public static ColorStateList createSelector(int normalColor, int pressedColor) {
+        return new ColorStateList(
+                new int[][]
+                        {
+                                new int[]{android.R.attr.state_pressed},
+                                new int[]{android.R.attr.state_focused},
+                                new int[]{android.R.attr.state_activated},
+                                new int[]{}
+                        },
+                new int[]
+                        {
+                                pressedColor,
+                                pressedColor,
+                                pressedColor,
+                                normalColor
+                        }
+        );
     }
 }
