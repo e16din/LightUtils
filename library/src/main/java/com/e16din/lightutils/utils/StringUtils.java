@@ -1,6 +1,7 @@
 package com.e16din.lightutils.utils;
 
 import android.content.res.Resources;
+import android.text.TextUtils;
 
 import com.e16din.lightutils.LightUtils;
 import com.e16din.lightutils.R;
@@ -18,6 +19,18 @@ public class StringUtils extends CardUtils {
                 return true;
         }
         return false;
+    }
+
+    public static boolean isEmpty(CharSequence string) {
+        return TextUtils.isEmpty(string);
+    }
+
+    public static boolean hasText(CharSequence... strings) {
+        for (CharSequence string : strings) {
+            if (isEmpty(string))
+                return false;
+        }
+        return true;
     }
 
     public static boolean areEquals(CharSequence... strings) {
@@ -59,5 +72,4 @@ public class StringUtils extends CardUtils {
 
         return res.getString(age == 1 ? R.string.years1 : R.string.years2);
     }
-
 }

@@ -44,4 +44,11 @@ public class TextViewUtils extends DeviceUtils {
         return vText.length() == 0;
     }
 
+    public static boolean hasText(TextView... views) {
+        for (TextView view : views) {
+            if (isEmpty(view))
+                return false;
+        }
+        return true;
+    }
 }
