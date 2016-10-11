@@ -30,9 +30,7 @@ public class TextViewUtils extends DeviceUtils {
      * @param substring substring for coloring
      * @param color     color of substring
      */
-    public static void setTextWithColoredSpan(TextView vText, String fulltext, String substring,
-                                              int color) {
-
+    public static void setTextWithColoredSpan(TextView vText, String fulltext, String substring, int color) {
         vText.setText(fulltext, TextView.BufferType.SPANNABLE);
         Spannable spannable = (Spannable) vText.getText();
 
@@ -41,4 +39,9 @@ public class TextViewUtils extends DeviceUtils {
         spannable.setSpan(new ForegroundColorSpan(color), i, i + substring.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
+
+    public static boolean isEmpty(TextView vText) {
+        return vText.length() == 0;
+    }
+
 }
