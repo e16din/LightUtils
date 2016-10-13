@@ -27,27 +27,27 @@ public abstract class OnClickTouchListener implements View.OnTouchListener {
     @Override
     public boolean onTouch(View view, MotionEvent e) {
         switch (e.getAction()) {
-            case MotionEvent.ACTION_DOWN: {
+            case MotionEvent.ACTION_DOWN:
                 mPressStartTime = System.currentTimeMillis();
                 mPressedX = e.getX();
                 mPressedY = e.getY();
                 mStayedWithinClickDistance = true;
                 break;
-            }
-            case MotionEvent.ACTION_MOVE: {
+
+            case MotionEvent.ACTION_MOVE:
                 if (mStayedWithinClickDistance && distance(mPressedX, mPressedY,
                         e.getX(), e.getY()) > MAX_CLICK_DISTANCE) {
                     mStayedWithinClickDistance = false;
                 }
                 break;
-            }
-            case MotionEvent.ACTION_UP: {
+
+            case MotionEvent.ACTION_UP:
                 long pressDuration = System.currentTimeMillis() - mPressStartTime;
                 if (pressDuration < MAX_CLICK_DURATION && mStayedWithinClickDistance) {
 
                     onClickTouch(view, e);
                 }
-            }
+                break;
         }
 
         return false;

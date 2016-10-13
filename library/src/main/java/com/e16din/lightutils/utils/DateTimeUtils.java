@@ -122,7 +122,7 @@ public class DateTimeUtils extends SocialUtils {
                 .getYear();
     }
 
-    private static int calculateAge(DateTime minusDate) {
+    public static int calculateAge(DateTime minusDate) {
         return calculateAge(
                 minusDate.getYear(),
                 minusDate.getMonthOfYear(),

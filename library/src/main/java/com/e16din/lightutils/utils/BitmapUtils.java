@@ -36,11 +36,12 @@ public class BitmapUtils extends DisplayUtils {
             return null;
         }
 
-        int originalSize = (onlyBoundsOptions.outHeight > onlyBoundsOptions.outWidth) ? onlyBoundsOptions.outHeight
+        int originalSize = (onlyBoundsOptions.outHeight > onlyBoundsOptions.outWidth)
+                ? onlyBoundsOptions.outHeight
                 : onlyBoundsOptions.outWidth;
 
-        int size = dpToPx(80);
-        double ratio = (originalSize > size) ? (originalSize / size) : 1.0;
+        double size = dpToPx(80);
+        double ratio = (originalSize > size) ? (originalSize / size) : 1.0d;
 
         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
         bitmapOptions.inSampleSize = getPowerOfTwoForSampleRatio(ratio);

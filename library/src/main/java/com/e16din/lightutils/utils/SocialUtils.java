@@ -57,19 +57,20 @@ public class SocialUtils extends BitmapUtils {
 
             for (int i = 0; i < result.length; i++) {
                 final String f = result[i];
-                String fWithDots = "";
 
                 int pos = 0;
+                StringBuffer buf = new StringBuffer();
                 while (pos < f.length()) {
-                    fWithDots += f.substring(pos, pos + 2);
+                    buf.append(f.substring(pos, pos + 2));
                     pos += 2;
 
-                    if (pos < f.length())
-                        fWithDots += ":";
+                    if (pos < f.length()) {
+                        buf.append(":");
+                    }
                 }
 
                 Log.d("Fingerprint:", f);
-                Log.d("Fingerprint:", fWithDots);
+                Log.d("Fingerprint:", buf.toString());
             }
 
             return result;//Base64 packed SHA fingerprint of your packet certificate

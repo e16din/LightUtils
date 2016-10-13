@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 /**
  * Created by e16din on 14.08.15.
  */
-public class CardUtils extends MapUtils {
+public class CardUtils extends ViewUtils {
 
     //LUHN Formula (mod10)
     public static boolean validateCardNumber(String n) {
@@ -21,14 +21,14 @@ public class CardUtils extends MapUtils {
             int k;
 
             if (i > 0) {
-                k = Integer.valueOf(s1[i - 1]) * 2;
+                k = Integer.parseInt(s1[i - 1]) * 2;
                 if (k > 9) {
                     String s = "" + k;
-                    k = Integer.valueOf(s.substring(0, 1)) + Integer.valueOf(s.substring(1));
+                    k = Integer.parseInt(s.substring(0, 1)) + Integer.parseInt(s.substring(1));
                 }
-                checksum += Integer.valueOf(s1[i]) + k;
+                checksum += Integer.parseInt(s1[i]) + k;
             } else
-                checksum += Integer.valueOf(s1[0]);
+                checksum += Integer.parseInt(s1[0]);
         }
 
         return ((checksum % 10) == 0);
