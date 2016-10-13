@@ -72,4 +72,8 @@ public class StringUtils extends CardUtils {
 
         return res.getString(age == 1 ? R.string.years1 : R.string.years2);
     }
+
+    public static int indexAfter(String allText, String value, String after) {
+        return allText.indexOf(value, allText.indexOf(after));
+    }
 }
