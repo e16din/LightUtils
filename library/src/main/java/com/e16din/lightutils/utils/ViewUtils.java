@@ -155,18 +155,24 @@ public class ViewUtils extends SecureUtils {
     }
 
     public static void updateVisibility(int visibility, View... views) {
+        if(views == null) return;
+
         for (View v : views) {
             v.setVisibility(visibility);
         }
     }
 
     public static void updateVisibility(Activity activity, int visibility, int... viewIds) {
+        if(viewIds == null) return;
+
         for (int id : viewIds) {
             activity.findViewById(id).setVisibility(visibility);
         }
     }
 
     public static void updateVisibility(View view, int visibility, int... viewIds) {
+        if(viewIds == null) return;
+
         for (int id : viewIds) {
             view.findViewById(id).setVisibility(visibility);
         }
@@ -179,6 +185,7 @@ public class ViewUtils extends SecureUtils {
     public static void updateVisibility(Fragment f, int visibility, int... viewIds) {
         final View view = f.getView();
         if (view == null) return;
+        if(viewIds == null) return;
 
         for (int id : viewIds) {
             view.findViewById(id).setVisibility(visibility);
@@ -189,6 +196,7 @@ public class ViewUtils extends SecureUtils {
     public static void updateVisibility(android.app.Fragment f, int visibility, int... viewIds) {
         final View view = f.getView();
         if (view == null) return;
+        if(viewIds == null) return;
 
         for (int id : viewIds) {
             view.findViewById(id).setVisibility(visibility);
