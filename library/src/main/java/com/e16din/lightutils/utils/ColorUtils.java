@@ -7,6 +7,14 @@ import android.content.res.ColorStateList;
  */
 public class ColorUtils extends MathUtils {
 
+    public static String rgbToHex(int r, int g, int b) {
+        return String.format("#%02x%02x%02x", r, g, b);
+    }
+
+    public static String argbToHex(int a, int r, int g, int b) {
+        return String.format("#%02x%02x%02x%02x", a, r, g, b);
+    }
+
     public static String hexToRgb(int color) {
         int c = (int) Long.parseLong(color + "", 16);
         String r = ((c >> 16) & 0xFF) + "";
