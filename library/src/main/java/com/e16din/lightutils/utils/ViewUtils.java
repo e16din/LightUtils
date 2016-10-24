@@ -155,7 +155,7 @@ public class ViewUtils extends SecureUtils {
     }
 
     public static void updateVisibility(int visibility, View... views) {
-        if(views == null) return;
+        if (views == null) return;
 
         for (View v : views) {
             v.setVisibility(visibility);
@@ -163,7 +163,7 @@ public class ViewUtils extends SecureUtils {
     }
 
     public static void updateVisibility(Activity activity, int visibility, int... viewIds) {
-        if(viewIds == null) return;
+        if (viewIds == null) return;
 
         for (int id : viewIds) {
             activity.findViewById(id).setVisibility(visibility);
@@ -171,7 +171,7 @@ public class ViewUtils extends SecureUtils {
     }
 
     public static void updateVisibility(View view, int visibility, int... viewIds) {
-        if(viewIds == null) return;
+        if (viewIds == null) return;
 
         for (int id : viewIds) {
             view.findViewById(id).setVisibility(visibility);
@@ -185,7 +185,7 @@ public class ViewUtils extends SecureUtils {
     public static void updateVisibility(Fragment f, int visibility, int... viewIds) {
         final View view = f.getView();
         if (view == null) return;
-        if(viewIds == null) return;
+        if (viewIds == null) return;
 
         for (int id : viewIds) {
             view.findViewById(id).setVisibility(visibility);
@@ -196,7 +196,7 @@ public class ViewUtils extends SecureUtils {
     public static void updateVisibility(android.app.Fragment f, int visibility, int... viewIds) {
         final View view = f.getView();
         if (view == null) return;
-        if(viewIds == null) return;
+        if (viewIds == null) return;
 
         for (int id : viewIds) {
             view.findViewById(id).setVisibility(visibility);
@@ -258,14 +258,43 @@ public class ViewUtils extends SecureUtils {
         return v.getVisibility() == View.VISIBLE;
     }
 
+    public static boolean areVisible(View... views) {
+        for (View v : views) {
+            if (v.getVisibility() != View.VISIBLE) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public static boolean isInvisible(View v) {
         return v.getVisibility() == View.INVISIBLE;
+    }
+
+    public static boolean areInvisible(View... views) {
+        for (View v : views) {
+            if (v.getVisibility() != View.INVISIBLE) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static boolean isGone(View v) {
         return v.getVisibility() == View.GONE;
     }
 
+    public static boolean areGone(View... views) {
+        for (View v : views) {
+            if (v.getVisibility() != View.GONE) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     public static View setOnClickListener(Activity activity,
                                           int viewId,
