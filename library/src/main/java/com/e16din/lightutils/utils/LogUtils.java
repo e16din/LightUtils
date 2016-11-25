@@ -34,7 +34,7 @@ public class LogUtils extends TextViewUtils {
 
 
     public static void logJsonD(String tag, String message, int indentSpaces) {
-        if (!LightUtils.getInstance().isDebug()) return;
+        if (!LightUtils.isDebug()) return;
 
         if (message.startsWith("{")) {
             JSONObject jsonObject;
@@ -85,7 +85,7 @@ public class LogUtils extends TextViewUtils {
     }
 
     public static void logJsonI(String tag, String message, int indentSpaces) {
-        if (!LightUtils.getInstance().isDebug()) return;
+        if (!LightUtils.isDebug()) return;
 
         if (message.startsWith("{")) {
             JSONObject jsonObject;
@@ -136,7 +136,7 @@ public class LogUtils extends TextViewUtils {
     }
 
     public static void logJsonE(String tag, String message, int indentSpaces) {
-        if (!LightUtils.getInstance().isDebug()) return;
+        if (!LightUtils.isDebug()) return;
 
         if (message.startsWith("{")) {
             JSONObject jsonObject;
@@ -176,7 +176,7 @@ public class LogUtils extends TextViewUtils {
 
 
     public static void logLongI(String tag, String str) {
-        if (!LightUtils.getInstance().isDebug()) return;
+        if (!LightUtils.isDebug()) return;
 
         if (str.length() > LOG_PART_SIZE) {
             Log.i(tag, str.substring(0, LOG_PART_SIZE));
@@ -187,7 +187,7 @@ public class LogUtils extends TextViewUtils {
     }
 
     public static void logLongD(String tag, String str) {
-        if (!LightUtils.getInstance().isDebug()) return;
+        if (!LightUtils.isDebug()) return;
 
         if (str.length() > LOG_PART_SIZE) {
             Log.d(tag, str.substring(0, LOG_PART_SIZE));
@@ -198,7 +198,7 @@ public class LogUtils extends TextViewUtils {
     }
 
     public static void logLongE(String tag, String str) {
-        if (!LightUtils.getInstance().isDebug()) return;
+        if (!LightUtils.isDebug()) return;
 
         if (str.length() > LOG_PART_SIZE) {
             Log.e(tag, str.substring(0, LOG_PART_SIZE));
@@ -209,7 +209,7 @@ public class LogUtils extends TextViewUtils {
     }
 
     public static void logLongW(String tag, String str) {
-        if (!LightUtils.getInstance().isDebug()) return;
+        if (!LightUtils.isDebug()) return;
 
         if (str.length() > LOG_PART_SIZE) {
             Log.w(tag, str.substring(0, LOG_PART_SIZE));
@@ -220,7 +220,7 @@ public class LogUtils extends TextViewUtils {
     }
 
     public static void logLongV(String tag, String str) {
-        if (!LightUtils.getInstance().isDebug()) return;
+        if (!LightUtils.isDebug()) return;
 
         if (str.length() > LOG_PART_SIZE) {
             Log.v(tag, str.substring(0, LOG_PART_SIZE));

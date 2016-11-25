@@ -33,10 +33,10 @@ public final class U extends ResourcesUtils {
     private U() {
     }
 
-    private static Handler handler = new Handler();
+    private static Handler sHandler = new Handler();
 
     public static Handler getHandler() {
-        return handler;
+        return sHandler;
     }
 
     public static void log(Object object) {
@@ -55,7 +55,7 @@ public final class U extends ResourcesUtils {
     }
 
     public static boolean isGpsEnabled() {
-        final Context context = LightUtils.getInstance().getContext();
+        final Context context = LightUtils.getContext();
 
         final LocationManager manager =
                 (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
@@ -64,7 +64,7 @@ public final class U extends ResourcesUtils {
     }
 
     public static boolean isOnline() {
-        final Context context = LightUtils.getInstance().getContext();
+        final Context context = LightUtils.getContext();
 
         ConnectivityManager cm =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

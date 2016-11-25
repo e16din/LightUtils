@@ -47,8 +47,8 @@ public class StringUtils extends CardUtils {
     }
 
     public static String getYearsPostfix(int age) {
-        Resources res = LightUtils.getInstance().getResources();
-        Locale current = LightUtils.getInstance().getCurrentLocale();
+        Resources res = LightUtils.getResources();
+        Locale current = LightUtils.getCurrentLocale();
         final String locale = current.getLanguage();
 
         if (locale.toUpperCase().equals("RU")) {

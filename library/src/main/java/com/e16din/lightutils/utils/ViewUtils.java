@@ -365,15 +365,13 @@ public class ViewUtils extends SecureUtils {
      * @return the height of action bar (?actionBarSize value)
      */
     public static int getActionBarSize() {
-        final LightUtils lightUtils = LightUtils.getInstance();
-
         TypedValue value = new TypedValue();
 
-        if (lightUtils.getContext().getTheme().resolveAttribute(
+        if (LightUtils.getContext().getTheme().resolveAttribute(
                 android.R.attr.actionBarSize, value, true)) {
 
             return TypedValue.complexToDimensionPixelSize(
-                    value.data, lightUtils.getResources().getDisplayMetrics());
+                    value.data, LightUtils.getResources().getDisplayMetrics());
         }
 
         return U.WRONG_VALUE;

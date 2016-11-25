@@ -14,17 +14,17 @@ import java.util.UUID;
 /**
  * Created by e16din on 14.08.15.
  */
-public class IdUtils extends DateTimeUtils {
+public class IdUtils extends SocialUtils {
 
     public static String getImei() {
-        final Context context = LightUtils.getInstance().getContext();
+        final Context context = LightUtils.getContext();
 
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getDeviceId();
     }
 
     public static String getUdid() {
-        final Context context = LightUtils.getInstance().getContext();
+        final Context context = LightUtils.getContext();
         // for android sdk >= 9
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
@@ -38,7 +38,7 @@ public class IdUtils extends DateTimeUtils {
     }
 
     public static PackageInfo getPackageInfo() throws PackageManager.NameNotFoundException {
-        final Context context = LightUtils.getInstance().getContext();
+        final Context context = LightUtils.getContext();
         return context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
     }
 

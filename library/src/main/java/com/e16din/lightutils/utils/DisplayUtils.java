@@ -16,6 +16,7 @@ import android.view.View;
 import com.e16din.lightutils.LightUtils;
 import com.e16din.lightutils.model.Size;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -24,14 +25,14 @@ import java.lang.reflect.Method;
 public class DisplayUtils extends ColorUtils {
 
     public static float pxToSp(float px) {
-        final Context context = LightUtils.getInstance().getContext();
+        final Context context = LightUtils.getContext();
 
         float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
         return px / scaledDensity;
     }
 
     public static float pxToMm(final float px) {
-        final Context context = LightUtils.getInstance().getContext();
+        final Context context = LightUtils.getContext();
 
         final DisplayMetrics dm = context.getResources().getDisplayMetrics();
         return px / TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_MM, 1, dm);
@@ -42,19 +43,19 @@ public class DisplayUtils extends ColorUtils {
     }
 
     public static int spToPx(final int sp) {
-        final Context context = LightUtils.getInstance().getContext();
+        final Context context = LightUtils.getContext();
 
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
     }
 
     public static float dpToPxF(final float dp) {
-        final Context context = LightUtils.getInstance().getContext();
+        final Context context = LightUtils.getContext();
 
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 
     public static float pxToDpF(final float px) {
-        final Context context = LightUtils.getInstance().getContext();
+        final Context context = LightUtils.getContext();
 
         return px / context.getResources().getDisplayMetrics().density;
     }
@@ -99,7 +100,8 @@ public class DisplayUtils extends ColorUtils {
                 Method mGetRawW = Display.class.getMethod("getRawWidth");
                 realWidth = (Integer) mGetRawW.invoke(display);
                 realHeight = (Integer) mGetRawH.invoke(display);
-            } catch (Exception e) {
+            } catch (NoSuchMethodException | SecurityException | IllegalAccessException
+                    | IllegalArgumentException | InvocationTargetException e) {
                 //this may not be 100% accurate, but it's all we've got
                 realWidth = display.getWidth();
                 realHeight = display.getHeight();

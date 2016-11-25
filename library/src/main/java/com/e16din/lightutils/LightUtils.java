@@ -3,8 +3,6 @@ package com.e16din.lightutils;
 import android.content.Context;
 import android.content.res.Resources;
 
-import net.danlew.android.joda.JodaTimeAndroid;
-
 import java.util.Locale;
 
 /**
@@ -12,63 +10,41 @@ import java.util.Locale;
  */
 public final class LightUtils {
 
-    private Context mContext;
-    private boolean mDebug;
+    private static volatile Context sContext;
+    private static boolean sDebug;
 
     private LightUtils() {
     }
 
-    private static class Holder {
-        public static final LightUtils HOLDER_INSTANCE = new LightUtils();
-    }
-
-    public static LightUtils getInstance() {
-        return Holder.HOLDER_INSTANCE;
-    }
-
     /**
-     * Initialize LightUtils and JodaTimeAndroid
+     * Initialize LightUtils
      *
      * @param context Application context
      * @param debug   BuildConfig.DEBUG
      */
     public static void init(final Context context, boolean debug) {
-        if (Holder.HOLDER_INSTANCE.mContext == null) {
-            Holder.HOLDER_INSTANCE.mContext = context.getApplicationContext();
-            JodaTimeAndroid.init(Holder.HOLDER_INSTANCE.mContext);
-            Holder.HOLDER_INSTANCE.mDebug = debug;
-        }
+        sContext = context.getApplicationContext();
+        sDebug = debug;
     }
 
-    /**
-     * @deprecated Use init(final Context mContext, boolean debug)
-     */
-    @Deprecated
-    public static void init(final Context context) {
-        if (Holder.HOLDER_INSTANCE.mContext == null) {
-            Holder.HOLDER_INSTANCE.mContext = context.getApplicationContext();
-            JodaTimeAndroid.init(Holder.HOLDER_INSTANCE.mContext);
-        }
-    }
-
-    public Resources getResources() {
-        return mContext.getResources();
+    public static Resources getResources() {
+        return sContext.getResources();
     }
 
     @Deprecated
-    public Locale getCurrentLocale() {
-        return mContext.getResources().getConfiguration().locale;
+    public static Locale getCurrentLocale() {
+        return getResources().getConfiguration().locale;
     }
 
-    public boolean isDebug() {
-        return mDebug;
+    public static boolean isDebug() {
+        return sDebug;
     }
 
-    public Context getContext() {
-        return mContext;
+    public static Context getContext() {
+        return sContext;
     }
 
-    public void setContext(Context context) {
-        this.mContext = context;
+    public static void setContext(Context context) {
+        sContext = context;
     }
 }

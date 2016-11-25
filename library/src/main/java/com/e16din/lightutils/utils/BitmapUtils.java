@@ -20,8 +20,8 @@ import java.io.InputStream;
  */
 public class BitmapUtils extends DisplayUtils {
 
-    public static Bitmap getThumbnail(Uri uri) throws IOException, NullPointerException {
-        final Context context = LightUtils.getInstance().getContext();
+    public static Bitmap getThumbnail(Uri uri, int sizeDp) throws IOException, NullPointerException {
+        final Context context = LightUtils.getContext();
 
         InputStream input = context.getContentResolver().openInputStream(uri);
         assert input != null;
@@ -40,8 +40,8 @@ public class BitmapUtils extends DisplayUtils {
                 ? onlyBoundsOptions.outHeight
                 : onlyBoundsOptions.outWidth;
 
-        double size = dpToPx(80);
-        double ratio = (originalSize > size) ? (originalSize / size) : 1.0d;
+        double size = dpToPx(sizeDp);
+        double ratio = (originalSize > size) ? (originalSize / size) : 1;
 
         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
         bitmapOptions.inSampleSize = getPowerOfTwoForSampleRatio(ratio);

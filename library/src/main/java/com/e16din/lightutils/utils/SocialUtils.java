@@ -18,7 +18,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class SocialUtils extends BitmapUtils {
     public static void printKeyHash() {
-        final Context context = LightUtils.getInstance().getContext();
+        final Context context = LightUtils.getContext();
 
         // Add code to print out the key hash
         try {
@@ -38,7 +38,7 @@ public class SocialUtils extends BitmapUtils {
 
     //from https://github.com/VKCOM/vk-android-sdk/blob/master/vksdk_library/src/main/java/com/vk/sdk/util/VKUtil.java
     public static String[] printCertificateFingerprint() {
-        final Context context = LightUtils.getInstance().getContext();
+        final Context context = LightUtils.getContext();
 
         try {
             if (context.getPackageManager() == null)
