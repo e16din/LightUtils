@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
@@ -78,11 +77,11 @@ public class DisplayUtils extends ColorUtils {
         return getScreenSize(display);
     }
 
-    public static Size getScreenSize(@NonNull Activity activity) {
+    public static Size getScreenSize(Activity activity) {
         return getScreenSize(activity.getWindowManager().getDefaultDisplay());
     }
 
-    public static Size getScreenSize(@NonNull Display display) {
+    public static Size getScreenSize(Display display) {
         int realWidth;
         int realHeight;
 

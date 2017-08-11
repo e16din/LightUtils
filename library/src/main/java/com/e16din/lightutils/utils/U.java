@@ -10,16 +10,12 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
 import android.util.SparseArray;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
 
 import com.e16din.lightutils.LightUtils;
-import com.e16din.lightutils.tools.AgileRunnable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,8 +23,6 @@ import java.util.List;
 public final class U extends ResourcesUtils {
 
     public static final int WRONG_VALUE = -100500;
-
-    private static List<AgileRunnable> mTickers;
 
     private U() {
     }
@@ -112,7 +106,7 @@ public final class U extends ResourcesUtils {
         return tryThis(runnable, true);
     }
 
-    public static boolean tryThis(@NonNull Runnable runnable, boolean needIgnore) {
+    public static boolean tryThis(Runnable runnable, boolean needIgnore) {
         if (!needIgnore) {
             runnable.run();
             return true;
@@ -126,39 +120,6 @@ public final class U extends ResourcesUtils {
         }
 
         return false;
-    }
-
-    public static void startTicker(@IntRange(from = 1, to = Integer.MAX_VALUE) final Long interval,
-                                   @IntRange(from = 0, to = Integer.MAX_VALUE) final int count,
-                                   final AgileRunnable onTick) {
-        if (count <= 0 || interval < 1) return;
-
-        if (mTickers == null) {
-            mTickers = new ArrayList<>();
-        }
-        mTickers.add(onTick);
-
-
-        U.getHandler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                onTick.run();
-
-                if (!onTick.isCanceled() && count - 1 > 0) {
-                    startTicker(interval, count - 1, onTick);
-                }
-            }
-        }, interval);
-    }
-
-    public static void breakAllTickers() {
-        if (mTickers == null) return;
-
-        for (AgileRunnable r : mTickers) {
-            r.cancel();
-        }
-
-        mTickers.clear();
     }
 
     public static void clearCookie() {

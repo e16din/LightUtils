@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    compileSdkVersion 26
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 26
     }
 
     buildTypes {
@@ -17,8 +17,4 @@ android {
 }
 
 dependencies {
-    final SUPPORT_LIBRARY_VERSION = "25.0.1"
-
-    compile("com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION")
-    compile("com.android.support:support-v4:$SUPPORT_LIBRARY_VERSION")
 }

@@ -1,14 +1,9 @@
 package com.e16din.lightutils.utils;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Fragment;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -60,14 +55,6 @@ public class ViewUtils extends SecureUtils {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static void hideView(android.app.Fragment f, int resId) {
-        final View view = f.getView();
-        if (view != null) {
-            hide(view.findViewById(resId));
-        }
-    }
-
     public static void gone(View v) {
         v.setVisibility(View.GONE);
     }
@@ -83,14 +70,6 @@ public class ViewUtils extends SecureUtils {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static void gone(android.app.Fragment f, int resId) {
-        final View view = f.getView();
-        if (view != null) {
-            gone(view.findViewById(resId));
-        }
-    }
-
     public static void show(View v) {
         v.setVisibility(View.VISIBLE);
     }
@@ -100,14 +79,6 @@ public class ViewUtils extends SecureUtils {
     }
 
     public static void show(Fragment f, int resId) {
-        final View view = f.getView();
-        if (view != null) {
-            show(view.findViewById(resId));
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static void show(android.app.Fragment f, int resId) {
         final View view = f.getView();
         if (view != null) {
             show(view.findViewById(resId));
@@ -182,18 +153,8 @@ public class ViewUtils extends SecureUtils {
         view.setVisibility(visibility);
     }
 
+
     public static void updateVisibility(Fragment f, int visibility, int... viewIds) {
-        final View view = f.getView();
-        if (view == null) return;
-        if (viewIds == null) return;
-
-        for (int id : viewIds) {
-            view.findViewById(id).setVisibility(visibility);
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static void updateVisibility(android.app.Fragment f, int visibility, int... viewIds) {
         final View view = f.getView();
         if (view == null) return;
         if (viewIds == null) return;
@@ -321,24 +282,15 @@ public class ViewUtils extends SecureUtils {
         setOnClickListener(view.findViewById(viewId), onClickListener);
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static void setOnClickListener(android.app.Fragment f, int viewId,
-                                          View.OnClickListener onClickListener) {
-        final View view = f.getView();
-        if (view == null) return;
-
-        setOnClickListener(view.findViewById(viewId), onClickListener);
-    }
-
-    public static void updateTint(View view, @ColorInt int color) {
-        Drawable wrappedDrawable = DrawableCompat.wrap(view.getBackground());
-        DrawableCompat.setTint(wrappedDrawable.mutate(), color);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            view.setBackground(wrappedDrawable);
-        } else {
-            view.setBackgroundDrawable(wrappedDrawable);
-        }
-    }
+//    public static void updateTint(View view, int color) {
+//        Drawable wrappedDrawable = DrawableCompat.wrap(view.getBackground());
+//        DrawableCompat.setTint(wrappedDrawable.mutate(), color);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//            view.setBackground(wrappedDrawable);
+//        } else {
+//            view.setBackgroundDrawable(wrappedDrawable);
+//        }
+//    }
 
     public static void setHeight(View v, int height) {
         ViewGroup.LayoutParams params = v.getLayoutParams();
@@ -377,7 +329,7 @@ public class ViewUtils extends SecureUtils {
         return U.WRONG_VALUE;
     }
 
-    public static void listenOnceOnGlobalLayout(@NonNull final View view, @NonNull final Runnable listener) {
+    public static void listenOnceOnGlobalLayout(final View view, final Runnable listener) {
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             public void onGlobalLayout() {
                 listener.run();
@@ -391,11 +343,11 @@ public class ViewUtils extends SecureUtils {
         });
     }
 
-    public static void recursiveLoopChildren(View view, @NonNull LoopChildrenCallback callback) {
+    public static void recursiveLoopChildren(View view, LoopChildrenCallback callback) {
         recursiveLoopChildren(view, callback, 0);
     }
 
-    public static void recursiveLoopChildren(View view, @NonNull LoopChildrenCallback callback, int deep) {
+    public static void recursiveLoopChildren(View view, LoopChildrenCallback callback, int deep) {
         if (view == null) return;
 
         deep += 1;
@@ -412,11 +364,11 @@ public class ViewUtils extends SecureUtils {
         }
     }
 
-    public static void bindEnableState(@NonNull final View view, @NonNull TextView... vFields) {
+    public static void bindEnableState(final View view, TextView... vFields) {
         bindEnableState(view, 0, vFields);
     }
 
-    public static void bindEnableState(@NonNull final View view, final int maxInvalidLength, @NonNull final TextView... vFields) {
+    public static void bindEnableState(final View view, final int maxInvalidLength, final TextView... vFields) {
         final SimpleTextWatcher watcher = new SimpleTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -431,11 +383,11 @@ public class ViewUtils extends SecureUtils {
         }
     }
 
-    public static void bindEnableState(@NonNull final View[] views, @NonNull TextView... vFields) {
+    public static void bindEnableState(final View[] views, TextView... vFields) {
         bindEnableState(views, 0, vFields);
     }
 
-    public static void bindEnableState(@NonNull final View[] views, final int maxInvalidLength, @NonNull final TextView... vFields) {
+    public static void bindEnableState(final View[] views, final int maxInvalidLength, final TextView... vFields) {
         final SimpleTextWatcher watcher = new SimpleTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -453,7 +405,7 @@ public class ViewUtils extends SecureUtils {
     }
 
 
-    public static boolean hasInvalidLength(@NonNull TextView[] vFields, int maxInvalidLength) {
+    public static boolean hasInvalidLength(TextView[] vFields, int maxInvalidLength) {
         boolean hasInvalidValue = false;
         for (TextView vText : vFields) {
             if (vText.length() <= maxInvalidLength) {
@@ -464,7 +416,7 @@ public class ViewUtils extends SecureUtils {
         return hasInvalidValue;
     }
 
-    public static int getClickedViewId(@NonNull int[] viewsArray, ViewGroup view, MotionEvent e) {
+    public static int getClickedViewId(int[] viewsArray, ViewGroup view, MotionEvent e) {
         for (int viewId : viewsArray) {
             if (isViewClicked(viewId, view, e)) {
                 return viewId;
@@ -474,7 +426,7 @@ public class ViewUtils extends SecureUtils {
         return INVALID_VALUE;
     }
 
-    public static int getClickedViewId(@NonNull List<Integer> viewsList, ViewGroup view, MotionEvent e) {
+    public static int getClickedViewId(List<Integer> viewsList, ViewGroup view, MotionEvent e) {
         for (int viewId : viewsList) {
             if (isViewClicked(viewId, view, e)) {
                 return viewId;

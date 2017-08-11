@@ -10,7 +10,6 @@ import android.content.res.XmlResourceParser;
 import android.graphics.Movie;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -86,7 +85,7 @@ public class ResourcesUtils extends LogUtils {
     }
 
     public static Drawable getDrawable(int id) throws Resources.NotFoundException {
-        return ContextCompat.getDrawable(LightUtils.getContext(), id);
+        return LightUtils.getResources().getDrawable(id);
     }
 
     public static Drawable getDrawable(int id, Resources.Theme theme) throws Resources.NotFoundException {
@@ -126,7 +125,7 @@ public class ResourcesUtils extends LogUtils {
      *                                                         does not exist.
      */
     public static int getColor(int id) {
-        return ContextCompat.getColor(LightUtils.getContext(), id);
+        return LightUtils.getResources().getColor(id);
     }
 
     public static int getColor(int id, Resources.Theme theme) throws Resources.NotFoundException {
@@ -134,7 +133,7 @@ public class ResourcesUtils extends LogUtils {
     }
 
     public static ColorStateList getColorStateList(int id) throws Resources.NotFoundException {
-        return ContextCompat.getColorStateList(LightUtils.getContext(), id);
+        return LightUtils.getResources().getColorStateList(id);
     }
 
     public static ColorStateList getColorStateList(int id, Resources.Theme theme) throws Resources.NotFoundException {
