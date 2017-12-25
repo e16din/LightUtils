@@ -14,82 +14,82 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
-import com.e16din.lightutils.LightUtils;
-
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.io.InputStream;
 
+import static com.e16din.lightutils.utils.UExtKt.resources;
+
 public class ResourcesUtils extends LogUtils {
 
     public static String getString(int id) {
-        return LightUtils.getResources().getString(id);
+        return resources().getString(id);
     }
 
     public static String getString(int id, Object... formatArgs) {
-        return LightUtils.getResources().getString(id, formatArgs);
+        return resources().getString(id, formatArgs);
     }
 
     public static String getQuantityString(int id, int quantity, Object... formatArgs) {
-        return LightUtils.getResources().getQuantityString(id, quantity, formatArgs);
+        return resources().getQuantityString(id, quantity, formatArgs);
     }
 
     public static String getQuantityString(int id, int quantity) {
-        return LightUtils.getResources().getQuantityString(id, quantity);
+        return resources().getQuantityString(id, quantity);
     }
 
 
     public static CharSequence getText(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getText(id);
+        return resources().getText(id);
     }
 
     public static CharSequence getQuantityText(int id, int quantity) throws Resources.NotFoundException {
-        return LightUtils.getResources().getQuantityText(id, quantity);
+        return resources().getQuantityText(id, quantity);
     }
 
     public static CharSequence getText(int id, CharSequence def) {
-        return LightUtils.getResources().getText(id, def);
+        return resources().getText(id, def);
     }
 
     public static CharSequence[] getTextArray(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getTextArray(id);
+        return resources().getTextArray(id);
     }
 
     public static String[] getStringArray(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getStringArray(id);
+        return resources().getStringArray(id);
     }
 
     public static int[] getIntArray(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getIntArray(id);
+        return resources().getIntArray(id);
     }
 
     public static TypedArray obtainTypedArray(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().obtainTypedArray(id);
+        return resources().obtainTypedArray(id);
     }
 
     public static float getDimension(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getDimension(id);
+        return resources().getDimension(id);
     }
 
     public static int getDimensionPixelOffset(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getDimensionPixelOffset(id);
+        return resources().getDimensionPixelOffset(id);
     }
 
     public static int getDimensionPixelSize(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getDimensionPixelSize(id);
+        return resources().getDimensionPixelSize(id);
     }
 
     public static float getFraction(int id, int base, int pbase) {
-        return LightUtils.getResources().getFraction(id, base, pbase);
+        return resources().getFraction(id, base, pbase);
     }
 
     public static Drawable getDrawable(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getDrawable(id);
+        return resources().getDrawable(id);
     }
 
     public static Drawable getDrawable(int id, Resources.Theme theme) throws Resources.NotFoundException {
-        return LightUtils.getResources().getDrawable(id, theme);
+        return resources().getDrawable(id, theme);
     }
 
     /**
@@ -97,15 +97,15 @@ public class ResourcesUtils extends LogUtils {
      */
     @Deprecated
     public static Drawable getDrawableForDensity(int id, int density) throws Resources.NotFoundException {
-        return LightUtils.getResources().getDrawableForDensity(id, density);
+        return resources().getDrawableForDensity(id, density);
     }
 
     public static Drawable getDrawableForDensity(int id, int density, Resources.Theme theme) {
-        return LightUtils.getResources().getDrawableForDensity(id, density, theme);
+        return resources().getDrawableForDensity(id, density, theme);
     }
 
     public static Movie getMovie(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getMovie(id);
+        return resources().getMovie(id);
     }
 
 
@@ -125,122 +125,122 @@ public class ResourcesUtils extends LogUtils {
      *                                                         does not exist.
      */
     public static int getColor(int id) {
-        return LightUtils.getResources().getColor(id);
+        return resources().getColor(id);
     }
 
     public static int getColor(int id, Resources.Theme theme) throws Resources.NotFoundException {
-        return LightUtils.getResources().getColor(id, theme);
+        return resources().getColor(id, theme);
     }
 
     public static ColorStateList getColorStateList(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getColorStateList(id);
+        return resources().getColorStateList(id);
     }
 
     public static ColorStateList getColorStateList(int id, Resources.Theme theme) throws Resources.NotFoundException {
-        return LightUtils.getResources().getColorStateList(id, theme);
+        return resources().getColorStateList(id, theme);
     }
 
     public static boolean getBoolean(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getBoolean(id);
+        return resources().getBoolean(id);
     }
 
     public static int getInteger(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getInteger(id);
+        return resources().getInteger(id);
     }
 
     public static XmlResourceParser getLayout(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getLayout(id);
+        return resources().getLayout(id);
     }
 
     public static XmlResourceParser getAnimation(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getAnimation(id);
+        return resources().getAnimation(id);
     }
 
     public static XmlResourceParser getXml(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().getXml(id);
+        return resources().getXml(id);
     }
 
     public static InputStream openRawResource(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().openRawResource(id);
+        return resources().openRawResource(id);
     }
 
     public static InputStream openRawResource(int id, TypedValue value) throws Resources.NotFoundException {
-        return LightUtils.getResources().openRawResource(id, value);
+        return resources().openRawResource(id, value);
     }
 
     public static AssetFileDescriptor openRawResourceFd(int id) throws Resources.NotFoundException {
-        return LightUtils.getResources().openRawResourceFd(id);
+        return resources().openRawResourceFd(id);
     }
 
     public static void getValue(int id, TypedValue outValue, boolean resolveRefs) throws Resources.NotFoundException {
-        LightUtils.getResources().getValue(id, outValue, resolveRefs);
+        resources().getValue(id, outValue, resolveRefs);
     }
 
     public static void getValueForDensity(int id, int density, TypedValue outValue, boolean resolveRefs) throws Resources.NotFoundException {
-        LightUtils.getResources().getValueForDensity(id, density, outValue, resolveRefs);
+        resources().getValueForDensity(id, density, outValue, resolveRefs);
     }
 
     public static void getValue(String name, TypedValue outValue, boolean resolveRefs) throws Resources.NotFoundException {
-        LightUtils.getResources().getValue(name, outValue, resolveRefs);
+        resources().getValue(name, outValue, resolveRefs);
     }
 
     public static Resources.Theme newTheme() {
-        return LightUtils.getResources().newTheme();
+        return resources().newTheme();
     }
 
     public static TypedArray obtainAttributes(AttributeSet set, int[] attrs) {
-        return LightUtils.getResources().obtainAttributes(set, attrs);
+        return resources().obtainAttributes(set, attrs);
     }
 
     public static void updateConfiguration(Configuration config, DisplayMetrics metrics) {
-        LightUtils.getResources().updateConfiguration(config, metrics);
+        resources().updateConfiguration(config, metrics);
     }
 
     public static DisplayMetrics getDisplayMetrics() {
-        return LightUtils.getResources().getDisplayMetrics();
+        return resources().getDisplayMetrics();
     }
 
     public static Configuration getConfiguration() {
-        return LightUtils.getResources().getConfiguration();
+        return resources().getConfiguration();
     }
 
     public static int getIdentifier(String name, String defType, String defPackage) {
-        return LightUtils.getResources().getIdentifier(name, defType, defPackage);
+        return resources().getIdentifier(name, defType, defPackage);
     }
 
     public static String getResourceName(int resid) throws Resources.NotFoundException {
-        return LightUtils.getResources().getResourceName(resid);
+        return resources().getResourceName(resid);
     }
 
     public static String getResourcePackageName(int resid) throws Resources.NotFoundException {
-        return LightUtils.getResources().getResourcePackageName(resid);
+        return resources().getResourcePackageName(resid);
     }
 
     public static String getResourceTypeName(int resid) throws Resources.NotFoundException {
-        return LightUtils.getResources().getResourceTypeName(resid);
+        return resources().getResourceTypeName(resid);
     }
 
     public static String getResourceEntryName(int resid) throws Resources.NotFoundException {
-        return LightUtils.getResources().getResourceEntryName(resid);
+        return resources().getResourceEntryName(resid);
     }
 
     public static void parseBundleExtras(XmlResourceParser parser, Bundle outBundle) throws XmlPullParserException, IOException {
-        LightUtils.getResources().parseBundleExtras(parser, outBundle);
+        resources().parseBundleExtras(parser, outBundle);
     }
 
     public static void parseBundleExtra(String tagName, AttributeSet attrs, Bundle outBundle) throws XmlPullParserException {
-        LightUtils.getResources().parseBundleExtra(tagName, attrs, outBundle);
+        resources().parseBundleExtra(tagName, attrs, outBundle);
     }
 
     public static AssetManager getAssets() {
-        return LightUtils.getResources().getAssets();
+        return resources().getAssets();
     }
 
     public static void flushLayoutCache() {
-        LightUtils.getResources().flushLayoutCache();
+        resources().flushLayoutCache();
     }
 
     public static void finishPreloading() {
-        LightUtils.getResources().finishPreloading();
+        resources().finishPreloading();
     }
 }

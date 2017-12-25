@@ -10,10 +10,10 @@ import android.graphics.PorterDuffXfermode;
 import android.net.Uri;
 import android.os.Build;
 
-import com.e16din.lightutils.LightUtils;
-
 import java.io.IOException;
 import java.io.InputStream;
+
+import static com.e16din.topactivity.TopActivityKt.app;
 
 /**
  * Created by e16din on 14.08.15.
@@ -21,7 +21,7 @@ import java.io.InputStream;
 public class BitmapUtils extends DisplayUtils {
 
     public static Bitmap getThumbnail(Uri uri, int sizeDp) throws IOException, NullPointerException {
-        final Context context = LightUtils.getContext();
+        final Context context = app();
 
         InputStream input = context.getContentResolver().openInputStream(uri);
         assert input != null;

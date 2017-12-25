@@ -60,6 +60,6 @@ public abstract class OnClickTouchListener implements View.OnTouchListener {
         float dy = y1 - y2;
         float distanceInPx = (float) Math.sqrt(dx * dx + dy * dy);
 
-        return U.pxToDpF(distanceInPx);
+        return U.pxToDp(distanceInPx);
     }
 }

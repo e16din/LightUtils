@@ -17,7 +17,7 @@ public class TextViewUtils extends DeviceUtils {
     }
 
     public static void updateHtml(Activity activity, int tvId) {
-        TextView tv = (TextView) activity.findViewById(tvId);
+        TextView tv = activity.findViewById(tvId);
         if (tv != null)
             tv.setText(HtmlCompat.fromHtml(tv.getText().toString()));
     }

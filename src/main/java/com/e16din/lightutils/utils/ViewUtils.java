@@ -11,11 +11,13 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
-import com.e16din.lightutils.LightUtils;
 import com.e16din.lightutils.tools.SimpleTextWatcher;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static com.e16din.lightutils.utils.UExtKt.resources;
+import static com.e16din.topactivity.TopActivityKt.app;
 
 /**
  * Created by e16din on 02.09.15.
@@ -319,11 +321,11 @@ public class ViewUtils extends SecureUtils {
     public static int getActionBarSize() {
         TypedValue value = new TypedValue();
 
-        if (LightUtils.getContext().getTheme().resolveAttribute(
+        if (app().getTheme().resolveAttribute(
                 android.R.attr.actionBarSize, value, true)) {
 
             return TypedValue.complexToDimensionPixelSize(
-                    value.data, LightUtils.getResources().getDisplayMetrics());
+                    value.data, resources().getDisplayMetrics());
         }
 
         return U.WRONG_VALUE;

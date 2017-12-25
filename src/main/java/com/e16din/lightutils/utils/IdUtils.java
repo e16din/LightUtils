@@ -7,9 +7,9 @@ import android.content.pm.PackageManager;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
-import com.e16din.lightutils.LightUtils;
-
 import java.util.UUID;
+
+import static com.e16din.topactivity.TopActivityKt.app;
 
 /**
  * Created by e16din on 14.08.15.
@@ -17,16 +17,13 @@ import java.util.UUID;
 public class IdUtils extends SocialUtils {
 
     public static String getImei() {
-        final Context context = LightUtils.getContext();
-
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager tm = (TelephonyManager) app().getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getDeviceId();
     }
 
     public static String getUdid() {
-        final Context context = LightUtils.getContext();
         // for android sdk >= 9
-        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        return Settings.Secure.getString(app().getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
     public static String getPackageVersionName() throws PackageManager.NameNotFoundException {
@@ -38,7 +35,7 @@ public class IdUtils extends SocialUtils {
     }
 
     public static PackageInfo getPackageInfo() throws PackageManager.NameNotFoundException {
-        final Context context = LightUtils.getContext();
+        final Context context = app();
         return context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
     }
 

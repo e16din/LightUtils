@@ -3,10 +3,11 @@ package com.e16din.lightutils.utils;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
-import com.e16din.lightutils.LightUtils;
 import com.e16din.lightutils.R;
 
 import java.util.Locale;
+
+import static com.e16din.lightutils.utils.UExtKt.resources;
 
 /**
  * Created by e16din on 14.08.15.
@@ -47,8 +48,8 @@ public class StringUtils extends CardUtils {
     }
 
     public static String getYearsPostfix(int age) {
-        Resources res = LightUtils.getResources();
-        Locale current = LightUtils.getCurrentLocale();
+        final Resources res = resources();
+        Locale current = res.getConfiguration().locale;
         final String locale = current.getLanguage();
 
         if (locale.toUpperCase().equals("RU")) {
