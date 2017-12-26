@@ -1,1 +1,1 @@
-include ':app', ':lightutils'
+include ':app', ':lightutils', ':topactivity'
