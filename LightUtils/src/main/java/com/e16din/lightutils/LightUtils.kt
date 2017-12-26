@@ -22,3 +22,7 @@ object LightUtils {
         isDebug = debug
     }
 }
+
+fun Application.initLightUtils() {
+    LightUtils.init(this)
+}

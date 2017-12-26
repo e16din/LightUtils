@@ -21,7 +21,7 @@ import java.io.InputStream;
 
 import static com.e16din.lightutils.utils.UExtKt.resources;
 
-public class ResourcesUtils extends LogUtils {
+public class ResourcesUtils extends TextViewUtils {
 
     public static String getString(int id) {
         return resources().getString(id);
