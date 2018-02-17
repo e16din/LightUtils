@@ -1,3 +1,4 @@
+# [Deprecated]
 # LightUtils
 A collection of useful utils.
 
