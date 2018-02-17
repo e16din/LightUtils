@@ -8,14 +8,16 @@ import android.net.Uri
 import android.os.Build
 import android.view.View
 import android.widget.TextView
-import com.e16din.topactivity.activity
 import com.e16din.topactivity.app
+import com.e16din.topactivity.topActivity
 import java.util.regex.Pattern
 
-fun resources(): Resources = app()!!.resources
+val resources
+    get() = app?.resources
 
 val TextView.string
     get() = this.text.toString()
+
 
 fun View.startOnClick(url: String) {
     this.setOnClickListener {
@@ -29,38 +31,37 @@ fun View.startOnClick(activityCls: Class<out Activity>) {
     }
 }
 
-fun String.start(context: Context = activity()!!) {
+fun String.start(context: Context = topActivity!!) {
     val matcher = Pattern.compile("(https?://|mailto:).+").matcher("")
     val url: String = matcher.reset(this).matches().then(this, "http://$this")
 
     Intent(Intent.ACTION_VIEW, url.toUri()).start(context)
 }
 
-fun startActivity(intent: Intent, context: Context = activity()!!) {
+fun startActivity(intent: Intent, context: Context = topActivity!!) {
     context.startActivity(
             (context is Activity).then(intent, intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)))
 }
 
-fun Intent.start(context: Context = activity()!!) {
+fun Intent.start(context: Context = topActivity!!) {
     startActivity(this, context)
 }
 
-fun Class<out Activity>.start(context: Context = activity()!!) {
+fun Class<out Activity>.start(context: Context = topActivity!!) {
     Intent(context, this).start(context)
 }
 
 fun String.toUri(): Uri? = Uri.parse(this)
 
-fun Int.getColor(theme: Resources.Theme = app()!!.theme) =
+fun Int.getColor(theme: Resources.Theme = topActivity!!.theme) =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            resources().getColor(this, theme)
+            resources?.getColor(this, theme)
         } else {
-            resources().getColor(this)
+            resources?.getColor(this)
         }
 
-fun Int.getString() = resources().getString(this)!!
-fun Int.getDimension() = resources().getDimension(this)
-
+fun Int.getString() = resources?.getString(this)!!
+fun Int.getDimension() = resources?.getDimension(this)
 
 fun <T> Boolean.then(tru: T, fal: T) = if (this) tru else fal
 fun <T> Boolean.then(tru: T) = if (this) tru else null

@@ -12,11 +12,14 @@ import android.view.View
 import com.e16din.lightutils.model.Size
 import java.lang.reflect.InvocationTargetException
 
+val displayMetrics
+    get() = resources!!.displayMetrics
+
 val Number.toPx: Float
-    get() = (this.toFloat() * resources().displayMetrics.density)
+    get() = (this.toFloat() * displayMetrics.density)
 
 val Number.toDp: Float
-    get() = (this.toFloat() / resources().displayMetrics.density)
+    get() = (this.toFloat() / displayMetrics.density)
 
 open class DisplayUtils : ColorUtils() {
     companion object {
@@ -28,21 +31,16 @@ open class DisplayUtils : ColorUtils() {
         fun pxToDp(px: Number) = px.toDp
 
         @JvmStatic
-        fun pxToSp(px: Float): Float {
-            val scaledDensity = resources().displayMetrics.scaledDensity
-            return px / scaledDensity
-        }
+        fun pxToSp(px: Float) = px / displayMetrics.scaledDensity
 
         @JvmStatic
-        fun pxToMm(px: Float): Float {
-            val dm = resources().displayMetrics
-            return px / TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_MM, 1f, dm)
-        }
+        fun pxToMm(px: Float) =
+                px / TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_MM, 1f, displayMetrics)
 
         @JvmStatic
-        fun spToPx(sp: Int): Int {
-            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp.toFloat(), resources().displayMetrics).toInt()
-        }
+        fun spToPx(sp: Int) =
+                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp.toFloat(), displayMetrics).toInt()
+
 
         @JvmStatic
         fun setElevation(view: View, levelPx: Int) {
@@ -52,9 +50,7 @@ open class DisplayUtils : ColorUtils() {
         }
 
         @JvmStatic
-        fun getScreenSize(activity: Activity): Size {
-            return getScreenSize(activity.windowManager.defaultDisplay)
-        }
+        fun getScreenSize(activity: Activity) = getScreenSize(activity.windowManager.defaultDisplay)
 
         @JvmStatic
         fun getScreenSize(display: Display): Size {

@@ -11,7 +11,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import static com.e16din.topactivity.TopActivityKt.app;
+import static com.e16din.lightutils.utils.UKt.app;
 
 /**
  * Created by e16din on 14.08.15.

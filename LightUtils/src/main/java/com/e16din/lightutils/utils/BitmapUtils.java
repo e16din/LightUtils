@@ -13,7 +13,7 @@ import android.os.Build;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.e16din.topactivity.TopActivityKt.app;
+import static com.e16din.lightutils.utils.UKt.app;
 
 /**
  * Created by e16din on 14.08.15.

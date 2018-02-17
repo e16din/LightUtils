@@ -16,8 +16,8 @@ import com.e16din.lightutils.tools.SimpleTextWatcher;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static com.e16din.lightutils.utils.UExtKt.resources;
-import static com.e16din.topactivity.TopActivityKt.app;
+import static com.e16din.lightutils.utils.UKt.app;
+import static com.e16din.lightutils.utils.UKt.resources;
 
 /**
  * Created by e16din on 02.09.15.
@@ -328,7 +328,7 @@ public class ViewUtils extends SecureUtils {
                     value.data, resources().getDisplayMetrics());
         }
 
-        return U.WRONG_VALUE;
+        return U.Companion.getWRONG_VALUE();
     }
 
     public static void listenOnceOnGlobalLayout(final View view, final Runnable listener) {

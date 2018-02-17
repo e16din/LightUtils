@@ -7,7 +7,7 @@ import com.e16din.lightutils.R;
 
 import java.util.Locale;
 
-import static com.e16din.lightutils.utils.UExtKt.resources;
+import static com.e16din.lightutils.utils.UKt.resources;
 
 /**
  * Created by e16din on 14.08.15.
